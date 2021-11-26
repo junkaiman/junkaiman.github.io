@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>React.js on keon.im</title>
+    <link>https://junkaiman.github.io/tags/react.js/</link>
+    <description>Recent content in React.js on keon.im</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year} Keon</copyright>
+    <lastBuildDate>Fri, 26 Nov 2021 12:21:47 +0800</lastBuildDate><atom:link href="https://junkaiman.github.io/tags/react.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dii Portal</title>
+      <link>https://junkaiman.github.io/works/dev/dii-portal/</link>
+      <pubDate>Fri, 26 Nov 2021 12:21:47 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/works/dev/dii-portal/</guid>
+      <description>The backstage management system of DKU innovation incubator (Dii) teams. Offers an convenient and efficient way of managing teams, projects, checking attendance, pushing notifications for both Dii applicants and administrators.
+Node.js + Express.js as backend system. MongoDB as the database. The front-end webpage is written in React.js. It is now in the development with a group of four students. The prototype and UI/UX design can be found at https://www.haitonglin.com/digital-imaging/web-design</description>
+    </item>
+    
+  </channel>
+</rss>

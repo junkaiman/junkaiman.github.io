@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on keon.im</title>
+    <link>https://junkaiman.github.io/blogs/</link>
+    <description>Recent content in Blogs on keon.im</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year} Keon</copyright>
+    <lastBuildDate>Fri, 26 Nov 2021 12:21:47 +0800</lastBuildDate><atom:link href="https://junkaiman.github.io/blogs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>⛏ Data Mining Internship at China Unicom</title>
+      <link>https://junkaiman.github.io/blogs/summer-internship-at-china-unicom/</link>
+      <pubDate>Fri, 26 Nov 2021 12:21:47 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogs/summer-internship-at-china-unicom/</guid>
+      <description>This is my very first internship in my life.
+Responsibilities Takeaways </description>
+    </item>
+    
+    <item>
+      <title>🔐 Deep Learning Professional Certificate</title>
+      <link>https://junkaiman.github.io/blogs/deep-learning-certification/</link>
+      <pubDate>Sun, 05 Sep 2021 12:21:47 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogs/deep-learning-certification/</guid>
+      <description>Summer 2021 During the Internship.
+Why do I want to learn this course? What did I learn from this course? </description>
+    </item>
+    
+    <item>
+      <title>🚀 Google IT Support Certificate</title>
+      <link>https://junkaiman.github.io/blogs/google-it-support-certification/</link>
+      <pubDate>Wed, 05 Aug 2020 12:21:47 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogs/google-it-support-certification/</guid>
+      <description>This summer I completed a series of online courses offered by Google regarding the IT Support as a professional specialization.
+Why do I want to learn this course? What did I learn from this course? </description>
+    </item>
+    
+  </channel>
+</rss>

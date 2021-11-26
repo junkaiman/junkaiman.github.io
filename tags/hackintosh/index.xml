@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hackintosh on keon.im</title>
+    <link>https://junkaiman.github.io/tags/hackintosh/</link>
+    <description>Recent content in hackintosh on keon.im</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year} Keon</copyright>
+    <lastBuildDate>Wed, 03 Jul 2019 09:02:43 +0000</lastBuildDate><atom:link href="https://junkaiman.github.io/tags/hackintosh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hackintosh折腾实录</title>
+      <link>https://junkaiman.github.io/blogger/hackintosh%E6%8A%98%E8%85%BE%E5%AE%9E%E5%BD%95/</link>
+      <pubDate>Wed, 03 Jul 2019 09:02:43 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/hackintosh%E6%8A%98%E8%85%BE%E5%AE%9E%E5%BD%95/</guid>
+      <description>本文迁移自OneNote
+前期准备 因为上大学可能要用到mac，听说Xcode很好用，决定装黑苹果-win10双系统。
+前期看了很多教程，翻了一些论坛，最终确定以“黑果小兵”站为主要教程操作。
+https://blog.daliansky.net/
+电脑配置先用鲁大师检测一下：
+在WIN下的操作:   下载最新的10.14.5 with Clover 4928镜像 https://blog.daliansky.net/macOS-Mojave-10.14.5-18F132-official-version-with-Clover-4928-original-image.html 下载etcher 下载Diskgenuis 下载BOOTICEx64
+https://1drv.ms/u/s!Agvrg7pBqjTjagN_80MmS5cV2Pc?e=QEXJu4 将镜像通过etcher🔥烧录至U盘中（最好为16G，至少为8G） 通过Diskgenius对硬盘进行分区，划出空间给MacOS（我给了80G）   一开始不知道安装流程时支持哪种文件类型。先试了不分配，结果不认；在安装时发现并不是只识别硬盘，而是可以识别其中的ntfs分区，于是直接格式化为ntfs分区就可以了。
+ 通过Diskgenius打开启动盘下的EFI分区，将其中的Clover/config.plist复制到桌面，在notepad++中打开，查找“ig-platform-id”，找到下方的16进制代码，更换为0x59160000，这个是对应显卡Intel Graphics 620的仿冒ID，对应的是MacBook Pro14,2 即MacBook Pro (13-inch, 2017, Four Thunderbolt 3 Ports)
+这样才不会黑屏   进入BIOS  8.关机后用牙签捣一下RESET，对小新的BIOS进行一些设置：
+ [ ] test
+[*] testt
+  Boot  Boot Mode: Legacy Support Boot Priority: UEFI First Fast Boot: Disabled   Exit  OS Optimized Defaults: Disabled   调整引导项启动顺序，将启动盘放置在磁盘之前，这样可以自动跳回安装界面，阻止了Windows Boot Manager的干扰。   安装系统+转移Clover 用牙签捣一下RESET，在选项中选择BIOS menu，进入启动盘。</description>
+    </item>
+    
+  </channel>
+</rss>

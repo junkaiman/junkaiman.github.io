@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ssh on keon.im</title>
+    <link>https://junkaiman.github.io/tags/ssh/</link>
+    <description>Recent content in ssh on keon.im</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year} Keon</copyright>
+    <lastBuildDate>Mon, 17 Feb 2020 12:12:53 +0000</lastBuildDate><atom:link href="https://junkaiman.github.io/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SSH登录慢</title>
+      <link>https://junkaiman.github.io/blogger/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</link>
+      <pubDate>Mon, 17 Feb 2020 12:12:53 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</guid>
+      <description>每次登陆SSH都很慢，从ssh到填密码要半分钟到一分钟。
+之前一直不在意，直到这一次换过路由器，用 hexo g -d deploy到服务器时，出现了ssh断连导致无法同步博客时，才去Google了一下如何解决。
+首先可以通过
+ssh -v xxx@xxx.com  的方法进行SSH的DEBUG，从而观察在哪一步停滞时间长。
+输入如下：
+username@LAPTOP-UBTA1OFA:~$ ssh -v git@serverhost OpenSSH_7.6p1 Ubuntu-4ubuntu0.3, OpenSSL 1.0.2n 7 Dec 2017 debug1: Reading configuration data /etc/ssh/ssh_config debug1: /etc/ssh/ssh_config line 19: Applying options for * ---------------第一次停顿----------------- debug1: Connecting to serverhost [0.0.0.0] port 22. debug1: Connection established. debug1: identity file /home/username/.ssh/id_rsa type 0 debug1: key_load_public: No such file or directory debug1: identity file /home/username/.ssh/id_rsa-cert type -1 debug1: key_load_public: No such file or directory debug1: identity file /home/username/.</description>
+    </item>
+    
+  </channel>
+</rss>

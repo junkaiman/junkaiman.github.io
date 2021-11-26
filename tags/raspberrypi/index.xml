@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RaspberryPi on keon.im</title>
+    <link>https://junkaiman.github.io/tags/raspberrypi/</link>
+    <description>Recent content in RaspberryPi on keon.im</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year} Keon</copyright>
+    <lastBuildDate>Sat, 21 Oct 2017 23:13:10 +0000</lastBuildDate><atom:link href="https://junkaiman.github.io/tags/raspberrypi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解决树莓派链接电视HDMI信号不支持问题</title>
+      <link>https://junkaiman.github.io/blogger/%E8%A7%A3%E5%86%B3%E6%A0%91%E8%8E%93%E6%B4%BE%E9%93%BE%E6%8E%A5%E7%94%B5%E8%A7%86hdmi%E4%BF%A1%E5%8F%B7%E4%B8%8D%E6%94%AF%E6%8C%81%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sat, 21 Oct 2017 23:13:10 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/%E8%A7%A3%E5%86%B3%E6%A0%91%E8%8E%93%E6%B4%BE%E9%93%BE%E6%8E%A5%E7%94%B5%E8%A7%86hdmi%E4%BF%A1%E5%8F%B7%E4%B8%8D%E6%94%AF%E6%8C%81%E9%97%AE%E9%A2%98/</guid>
+      <description>本文迁移自Blogspot
+家里的电视型号比较旧，对于raspberrypi内置的几个HDMI设置不能有效识别，所以在烧制好Raspbian系统后无法看到系统在做些什么。
+参考了网络上的文章，发现可以通过修改*/boot/config.txt实现一些参数的自定义。
+令hdmi_safe=1，采用通用的方法，
+可以勉强进入系统。
+但分辨率非常渣，只能达到480P。
+进入系统后，在raspberrypi configuration中打开SSH和VNC方便远程控制。
+之后，再打开config.txt文件，修改内部设置。
+hdmi_group=1 hdmi_mode=4  这样可以采用预制的HDMI参数，
+重启，可行！
+下面给出全部预设：
+These values are valid if hdmi_group=1 (CEA) hdmi_mode=1 VGA hdmi_mode=2 480p 60Hz hdmi_mode=3 480p 60Hz H hdmi_mode=4 720p 60Hz hdmi_mode=5 1080i 60Hz hdmi_mode=6 480i 60Hz hdmi_mode=7 480i 60Hz H hdmi_mode=8 240p 60Hz hdmi_mode=9 240p 60Hz H hdmi_mode=10 480i 60Hz 4x hdmi_mode=11 480i 60Hz 4x H hdmi_mode=12 240p 60Hz 4x hdmi_mode=13 240p 60Hz 4x H hdmi_mode=14 480p 60Hz 2x hdmi_mode=15 480p 60Hz 2x H hdmi_mode=16 1080p 60Hz hdmi_mode=17 576p 50Hz hdmi_mode=18 576p 50Hz H hdmi_mode=19 720p 50Hz hdmi_mode=20 1080i 50Hz hdmi_mode=21 576i 50Hz hdmi_mode=22 576i 50Hz H hdmi_mode=23 288p 50Hz hdmi_mode=24 288p 50Hz H hdmi_mode=25 576i 50Hz 4x hdmi_mode=26 576i 50Hz 4x H hdmi_mode=27 288p 50Hz 4x hdmi_mode=28 288p 50Hz 4x H hdmi_mode=29 576p 50Hz 2x hdmi_mode=30 576p 50Hz 2x H hdmi_mode=31 1080p 50Hz hdmi_mode=32 1080p 24Hz hdmi_mode=33 1080p 25Hz hdmi_mode=34 1080p 30Hz hdmi_mode=35 480p 60Hz 4x hdmi_mode=36 480p 60Hz 4xH hdmi_mode=37 576p 50Hz 4x hdmi_mode=38 576p 50Hz 4x H hdmi_mode=39 1080i 50Hz reduced blanking hdmi_mode=40 1080i 100Hz hdmi_mode=41 720p 100Hz hdmi_mode=42 576p 100Hz hdmi_mode=43 576p 100Hz H hdmi_mode=44 576i 100Hz hdmi_mode=45 576i 100Hz H hdmi_mode=46 1080i 120Hz hdmi_mode=47 720p 120Hz hdmi_mode=48 480p 120Hz hdmi_mode=49 480p 120Hz H hdmi_mode=50 480i 120Hz hdmi_mode=51 480i 120Hz H hdmi_mode=52 576p 200Hz hdmi_mode=53 576p 200Hz H hdmi_mode=54 576i 200Hz hdmi_mode=55 576i 200Hz H hdmi_mode=56 480p 240Hz hdmi_mode=57 480p 240Hz H hdmi_mode=58 480i 240Hz hdmi_mode=59 480i 240Hz H H means 16:9 variant (of a normally 4:3 mode).</description>
+    </item>
+    
+    <item>
+      <title>RaspberryPi使用静态IP</title>
+      <link>https://junkaiman.github.io/blogger/raspberrypi%E4%BD%BF%E7%94%A8%E9%9D%99%E6%80%81ip/</link>
+      <pubDate>Wed, 17 Aug 2016 23:12:45 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/raspberrypi%E4%BD%BF%E7%94%A8%E9%9D%99%E6%80%81ip/</guid>
+      <description>本文迁移自Blogspot
+家里换了个新路由器，TENDA-FH456，信号很强，但后台很简陋，却美而名之“易安装”。
+这对于普通用户不怎么影响，对我这种爱折腾科技的人就有点力不从心了，不能自定义DNS、不能将MAC与IP绑定，更没法端口映射。端口映射不重要，我得给树莓派固定个IP地址，要不然每次都进后台查IP，太不方便了。
+只能尝试从Pi上下手。
+sudo nano /etc/network/interfaces  （目前只会用nano&amp;hellip;）根据情况，修改成如下：
+auto lo iface lo inet loopback auto eth0 iface eth0 inet static address 192.168.0.12 gateway 192.168.0.1 netmask 255.255.255.0 auto wlan0 allow-hotplug wlan0 iface wlan0 inet dhcp wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf allow-hotplug wlan1 iface wlan1 inet manual wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf  其中
+auto * //代表自启 iface * inet ★ //★常见为static(静态),dhcp,manual（手动）,loopback等 //现在只了解前三种，有时间查查其他的 看还有什么功能 //如果使用了static类型，下面要跟上配置 address //静态IP地址 netmask //掩码 gateway //网关  配置完后Ctrl+X退出nano
+并输入
+sudo service networking restart //重启网络service  大功告成！</description>
+    </item>
+    
+  </channel>
+</rss>

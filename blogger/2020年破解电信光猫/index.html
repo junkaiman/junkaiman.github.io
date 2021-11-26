@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <title>2020年破解电信光猫 | keon.im</title>
+
+  <meta charset="UTF-8">
+  <meta name="language" content="en">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+  <meta http-equiv="expires" content="0">
+  
+  
+
+  <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+
+
+  
+  
+    
+ 
+  
+  
+  
+  
+  
+  
+    
+    <link type="text/css" rel="stylesheet" href="/css/post.min.024f4187196ec45a1c1d1de9cb3c11ca8b9fa5f355cec1424eb39325deedce53.css" integrity="sha256-Ak9BhxluxFocHR3pyzwRyoufpfNVzsFCTrOTJd7tzlM="/>
+  
+    
+    <link type="text/css" rel="stylesheet" href="/css/custom.min.2e2ca7ee8cf51347f818201af2cdaa7b8a6ec4c325da793a146a038a3626aca7.css" integrity="sha256-Liyn7oz1E0f4GCAa8s2qe4puxMMl2nk6FGoDijYmrKc="/>
+  
+  
+   
+   
+    
+
+<script type="application/ld+json">
+  
+    { 
+      "@context": "http://schema.org", 
+      "@type": "WebSite", 
+      "url": "https:\/\/junkaiman.github.io\/blogger\/2020%E5%B9%B4%E7%A0%B4%E8%A7%A3%E7%94%B5%E4%BF%A1%E5%85%89%E7%8C%AB\/",
+      "name": "2020年破解电信光猫",
+      "author": {
+        "@type": "Person",
+        "name": ""
+      },
+      "description": ""
+    }
+  
+  </script>
+</head>
+
+<body>
+  <div class="burger__container">
+  <div class="burger" aria-controls="navigation" aria-label="Menu">
+    <div class="burger__meat burger__meat--1"></div>
+    <div class="burger__meat burger__meat--2"></div>
+    <div class="burger__meat burger__meat--3"></div>
+  </div>
+</div>
+ 
+
+  <nav class="nav" id="navigation">
+  <ul class="nav__list">
+    
+    
+      <li>
+        <a  href="/">keon.im</a>
+      </li>
+    
+      <li>
+        <a  href="/developer">developer</a>
+      </li>
+    
+      <li>
+        <a  href="/artist">artist</a>
+      </li>
+    
+      <li>
+        <a  href="https://junkaiman.notion.site/Knowledge-Open-Source-eea57ec0d2a5440f9e40a21c91d055f0">learner</a>
+      </li>
+    
+  </ul>
+</nav>
+
+
+  <main>
+    
+    
+
+    <div class="flex-wrapper">
+      <div class="post__container">
+        <div class="post">
+          <header class="post__header">
+            
+              <h1 id="post__title">2020年破解电信光猫</h1>
+            
+            <time datetime="2020-02-22 18:09:27 &#43;0000 UTC" class="post__date">Feb 22 2020</time> 
+          </header>
+          <article class="post__content">
+              
+<p>今天回顾了一下2016年写的<a href="http://blog.codingkeon.com/2016/08/16/%E4%BC%81%E5%9B%BE%E7%A0%B4%E8%A7%A3%E7%94%B5%E4%BF%A1%E5%85%89%E7%8C%AB%E7%AE%A1%E7%90%86%E6%9D%83%E9%99%90%EF%BC%8C%E5%A4%B1%E8%B4%A5%E3%80%82" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>企图破解电信光猫管理权限，失败。</a>文章，当时失败的原因是</p>
+<blockquote>
+<p>经过几次尝试，client总是提示对方拒绝了通信，不明白错误在哪。</p>
+</blockquote>
+<p>当时技术能力有限 ;) 现在应该可以解决这个问题了。于是今天下午搜索资料又重新试了一下</p>
+<h2 id="接上次">※接上次<a class="anchor" href="#接上次">#</a></h2>
+<p>在当前的情境下，一个正常的tftp通信过程应该是这样的：</p>
+<ul>
+<li>
+<p>光猫上运行tftp客户端，电脑上运行tftp的服务端。</p>
+</li>
+<li>
+<p>在光猫上输入指令put文件到电脑的服务端上</p>
+</li>
+</ul>
+<p><strong>怎么样才能保证通信的建立呢？</strong></p>
+<blockquote>
+<ol>
+<li>因为tftp用69端口，所以保证69端口不被占用，客户端和服务端分别确认了一下，是没有被占用的。</li>
+<li>可以互相访问到。这个可以用ping来确认</li>
+<li>不被防火墙挡住</li>
+</ol>
+</blockquote>
+<p>测试了一下，结果是这样的：</p>
+<center>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ping</th>
+<th>tftp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务器</td>
+<td>OK</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>电脑</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+</tbody>
+</table>
+</center>
+总结光猫tftp受到的限制:
+1. 首先会被防火墙挡住，所以不能即时服务器能ping通也不能tftp
+2. 其次不同网段之间不能通讯，也就是说我电脑通过无线在192.168.0.1所属网段里，不能和光猫的192.168.1.1ping
+<p>这样就好办了，把电脑通过有线接入192.168.1.100-255网段，然后顺利和光猫建立tftp，将文件传回。</p>
+<h2 id="解密confcfg">※解密conf.cfg<a class="anchor" href="#解密confcfg">#</a></h2>
+<p>下载offzip，然后命令行</p>
+<pre><code>D:\tftp_get\offzip.exe -a config.cfg D:\tftp_get 0
+</code></pre>
+<p>注意最后一个0参数</p>
+<p>然后就会得到一个xml文件，包括了管理员后台的所有信息<br>
+<img src="https://i.loli.net/2020/02/23/CLAwoPZlsUnDujp.jpg" alt="xml文件"></p>
+<p>搜索telecomadmin就可以找到对应的密码了<br>
+而且上网账号密码也储存在这个文件中</p>
+<p>如果被窃取的话后果不堪设想，这也是光猫无法和防火墙外进行tftp通讯的原因。</p>
+<hr>
+<p>参考文章:</p>
+<p><a href="https://blog.csdn.net/c00lwater/article/details/16345087" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>https://blog.csdn.net/c00lwater/article/details/16345087</a><br>
+<a href="https://www.geek-share.com/detail/2595519635.html" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>https://www.geek-share.com/detail/2595519635.html</a><br>
+<a href="https://blog.csdn.net/c00lwater/article/details/16345417" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>https://blog.csdn.net/c00lwater/article/details/16345417</a><br>
+<a href="http://dy.163.com/v2/article/detail/E8332BHF055070TZ.html" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>http://dy.163.com/v2/article/detail/E8332BHF055070TZ.html</a></p>
+
+
+              
+          </article>
+          
+          
+
+<ul class="tags__list">
+    
+    <li class="tag__item">
+        <a class="tag__link" href="https://junkaiman.github.io/tags/hack/">hack</a>
+    </li></ul>
+
+ <div class="pagination">
+  
+    <a class="pagination__item" href="https://junkaiman.github.io/blogger/cloudreve%E5%AE%89%E8%A3%85/">
+        <span class="pagination__label">Previous Post</span>
+        <span class="pagination__title">Cloudreve安装</span>
+    </a>
+  
+
+  
+    <a class="pagination__item" href="https://junkaiman.github.io/blogger/%E5%AF%B9%E5%BB%BA%E7%AB%99%E7%9A%84%E5%8F%8D%E6%80%9D/">
+      <span class="pagination__label">Next Post</span>
+      <span class="pagination__title" >对建站的反思</span>
+    </a>
+  
+</div>
+
+          
+          
+          <footer class="post__footer">
+            
+
+
+<div class="social-icons">
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="GitHub"
+        href="https://github.com/junkaiman"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/github.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="LinkedIn"
+        href="https://www.linkedin.com/in/junkaiman/"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/linkedin.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="Email"
+        href="mailto:junkai.man@duke.edu"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/email.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="Resume"
+        href="/resume.pdf"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/resume.svg')"></div>
+      </a>
+    
+     
+</div>
+
+            <p>© 2021 Keon</p>
+          </footer>
+          </div>
+      </div>
+      
+      <div class="toc-container">
+           <div class="toc-post-title">2020年破解电信光猫</div> 
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#接上次">※接上次</a></li>
+    <li><a href="#解密confcfg">※解密conf.cfg</a></li>
+  </ul>
+</nav>
+      </div>
+      
+    </div>
+    
+
+  </main>
+
+   
+
+  
+  <script src="/js/index.min.575dda8d49ee02639942c63564273e6da972ab531dda26a08800bdcb477cbd7f.js" integrity="sha256-V13ajUnuAmOZQsY1ZCc&#43;balyq1Md2iagiAC9y0d8vX8=" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js"></script>
+
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js"
+    data-autoloader-path="https://unpkg.com/prismjs@1.20.0/components/"></script>
+
+  
+    <script src="/js/table-of-contents.js"></script>
+  
+
+
+</body>
+
+</html>

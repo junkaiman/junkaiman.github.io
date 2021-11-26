@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bloggers on keon.im</title>
+    <link>https://junkaiman.github.io/blogger/</link>
+    <description>Recent content in Bloggers on keon.im</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year} Keon</copyright>
+    <lastBuildDate>Sun, 23 Feb 2020 21:29:14 +0000</lastBuildDate><atom:link href="https://junkaiman.github.io/blogger/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>对建站的反思</title>
+      <link>https://junkaiman.github.io/blogger/%E5%AF%B9%E5%BB%BA%E7%AB%99%E7%9A%84%E5%8F%8D%E6%80%9D/</link>
+      <pubDate>Sun, 23 Feb 2020 21:29:14 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/%E5%AF%B9%E5%BB%BA%E7%AB%99%E7%9A%84%E5%8F%8D%E6%80%9D/</guid>
+      <description>随着网站分支和博客图片越来越多，网站打开的速度逐渐变慢了，而且服务器内存占用率也逐渐升高。
+之前每次发博文都是copy设计的cover、文章内图片到目录下，再git到服务器的，对于博客建设初期，图片较少，对服务器影响不大，但是随着博文越来越多，图片越来越多，网站页面加载时间开始就变慢了。
+内存占用目前除了增加内存、减少下属网站数量之外，没什么好办法，但是将博文图片迁移到图床上可以尽最大可能减少流量、增加加载速度了。
+※图床 国内很多图床都要备案域名才能给储存，不太好&amp;hellip;
+在网上找到了目前两家免费图床，
+sm.ms 和 postimages
+而且借助VScode里的插件，可以很快地把clipboard上的内容上传到sm.ms上，这样很方便。
+今晚就把图片都迁移过去吧。
+突然想到，要注意的一点就是，本地要做好图片的备份&amp;hellip;虽然说不用git到服务器上了，但是本地要留好，否则图床一挂都完蛋了&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>2020年破解电信光猫</title>
+      <link>https://junkaiman.github.io/blogger/2020%E5%B9%B4%E7%A0%B4%E8%A7%A3%E7%94%B5%E4%BF%A1%E5%85%89%E7%8C%AB/</link>
+      <pubDate>Sat, 22 Feb 2020 18:09:27 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/2020%E5%B9%B4%E7%A0%B4%E8%A7%A3%E7%94%B5%E4%BF%A1%E5%85%89%E7%8C%AB/</guid>
+      <description>今天回顾了一下2016年写的企图破解电信光猫管理权限，失败。文章，当时失败的原因是
+ 经过几次尝试，client总是提示对方拒绝了通信，不明白错误在哪。
+ 当时技术能力有限 ;) 现在应该可以解决这个问题了。于是今天下午搜索资料又重新试了一下
+※接上次 在当前的情境下，一个正常的tftp通信过程应该是这样的：
+  光猫上运行tftp客户端，电脑上运行tftp的服务端。
+  在光猫上输入指令put文件到电脑的服务端上
+  怎么样才能保证通信的建立呢？
+  因为tftp用69端口，所以保证69端口不被占用，客户端和服务端分别确认了一下，是没有被占用的。 可以互相访问到。这个可以用ping来确认 不被防火墙挡住   测试了一下，结果是这样的：
+     ping tftp     服务器 OK NO   电脑 NO NO     总结光猫tftp受到的限制: 1. 首先会被防火墙挡住，所以不能即时服务器能ping通也不能tftp 2. 其次不同网段之间不能通讯，也就是说我电脑通过无线在192.168.0.1所属网段里，不能和光猫的192.168.1.1ping 这样就好办了，把电脑通过有线接入192.168.1.100-255网段，然后顺利和光猫建立tftp，将文件传回。
+※解密conf.cfg 下载offzip，然后命令行
+D:\tftp_get\offzip.exe -a config.cfg D:\tftp_get 0  注意最后一个0参数
+然后就会得到一个xml文件，包括了管理员后台的所有信息
+搜索telecomadmin就可以找到对应的密码了
+而且上网账号密码也储存在这个文件中
+如果被窃取的话后果不堪设想，这也是光猫无法和防火墙外进行tftp通讯的原因。
+ 参考文章:</description>
+    </item>
+    
+    <item>
+      <title>Cloudreve安装</title>
+      <link>https://junkaiman.github.io/blogger/cloudreve%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Thu, 20 Feb 2020 11:32:37 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/cloudreve%E5%AE%89%E8%A3%85/</guid>
+      <description>NextCloud挂了&amp;hellip;
+而且确实NextCloud占用资源比较多，如果只是普通的文件分享的话没有必要把系统搞这么大&amp;hellip;
+所以今天打算装Cloudreve
+https://cloudreve.github.io/docs/#/install
+装不动sql
+mysql -u root -p my_password alter user &#39;username&#39;@&#39;localhost&#39; identified with mysql_native_password by &#39;password&#39;; 把username和password换换，主要是mysql_native_password这个参数。。 草..saved my life  改xsendfile 还有chunksize 还有php.ini的 max_execution_time 600 每个PHP页面运行的最大时间值(秒)，默认30秒 max_input_time 600 每个PHP页面接收数据所需的最大时间，默认60秒 memory_limit 8m 每个PHP页面所吃掉的最大内存，默认8M　</description>
+    </item>
+    
+    <item>
+      <title>JupyterHub安装</title>
+      <link>https://junkaiman.github.io/blogger/jupyterhub%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Tue, 18 Feb 2020 21:56:19 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/jupyterhub%E5%AE%89%E8%A3%85/</guid>
+      <description>参考 学习 jupyter notebook和jupyterhub的区别
+一个单用户 一个多用户
+You could add location /jupyterhub { proxy_pass http://localhost:8000; } to your nginx configuration. This forwards all trafic on the /jupyterhub path to the proxy.  https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/
+https://jupyterhub.readthedocs.io/en/stable/reference/config-proxy.html
+https://yuerblog.cc/2019/08/11/%E6%90%AD%E5%BB%BAjupyterhub%E6%94%AF%E6%8C%81%E5%A4%9A%E7%94%A8%E6%88%B7%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B/
+https://yatming.net/2017/12/28/JupyterHub%E6%90%AD%E5%BB%BA/
+https://jonuknownothingsnow.github.io/2019/04/13/%E8%B0%90%E9%97%A8%E6%AD%A6%E5%AD%A6%EF%BC%9A%E4%BD%BF%E7%94%A8JupyterHub%E6%90%AD%E5%BB%BA%E5%A4%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8E%A7%E5%88%B6%E5%8F%B0/
+!!!! !!!! https://jupyterhub.readthedocs.io/en/stable/installation-guide-hard.html#getting-started-using-your-new-jupyterhub 按着这个一步一步来就行了！
+然后再配置Nginx
+总结 随便修理修理&amp;hellip;也是个烂摊子&amp;hellip;&amp;hellip;&amp;hellip;
+搞定了同一个目录下的同步协作，在conf里修改spawn路径就行，但是伴随而来的是很多用户权限的管理&amp;hellip;..
+多用户在一个目录下不同文件同步还行，如果是同步编辑同一个文件就不太可了&amp;hellip;.
+要关闭再打开才能看到修改，而且不chmod 777的话，大家权限都不一样，读写起来不一致&amp;hellip;.
+暂时单用户用吧&amp;hellip;.</description>
+    </item>
+    
+    <item>
+      <title>用acme.sh申请SSL证书</title>
+      <link>https://junkaiman.github.io/blogger/%E7%94%A8acme-sh%E7%94%B3%E8%AF%B7ssl%E8%AF%81%E4%B9%A6/</link>
+      <pubDate>Tue, 18 Feb 2020 20:25:59 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/%E7%94%A8acme-sh%E7%94%B3%E8%AF%B7ssl%E8%AF%81%E4%B9%A6/</guid>
+      <description>背景 之前用acme.sh只能申请一级域名的SSL证书，二级域名就申请不下来，各种提示错误&amp;hellip;最近要搭网盘，要搭Jupyter，就赶紧学学怎么把二级域名SSL证书都申请下来。
+操作 根据acme的dnsapi官方文档，
+export VULTR_API_KEY=&amp;quot;&amp;lt;Your API key&amp;gt;&amp;quot;  curl https://get.acme.sh | sh ~/.acme.sh/acme.sh --issue --dns dns_vultr -d thekeon.tk -d &#39;*.thekeon.tk&#39; ~/.acme.sh/acme.sh --installcert -d codingkeon.com \ --key-file /usr/src/all-cert/private.key \ --fullchain-file /usr/src/all-cert/fullchain.cer \ --reloadcmd &amp;quot;systemctl force-reload nginx.service&amp;quot;  验证 看到secure了! </description>
+    </item>
+    
+    <item>
+      <title>搭建网盘！</title>
+      <link>https://junkaiman.github.io/blogger/%E6%90%AD%E5%BB%BA%E7%BD%91%E7%9B%98/</link>
+      <pubDate>Mon, 17 Feb 2020 21:02:09 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/%E6%90%AD%E5%BB%BA%E7%BD%91%E7%9B%98/</guid>
+      <description>前言 这几天又搞了搞BTSync（现在改名了叫Resilio），想到自己的VPS可以做一个中转储存器，这样的话无论什么时候都能下载到文件，但是一想这样还是有点复杂，要下载客户端才能同步文件，不如直接搭建个在线网页版的网盘，这样一来给别人分享文件也方便了。
+大致搜了一下，市面上有很多产品，我研究了一下各自的Demo：
+ cloudreve:
+支持第三方储存，可以节省VPS的流量和储存。但是失更了。
+owncloud:
+也是比较老
+seafile: 比较老了，虽然说可以Office在线协作，但是要付费，免费版只能下载客户端才能用，没有网页入口
+nextcloud:
+目前仍然在稳定更新 是owncloud的衍生版本，免费版可以md在线协作，付费了可以用Collabora Online在线协作。
+dzzoffice:
+也是放弃了，放到了社区，在线文档协作好像出了点问题。
+ 最后决定用nextcloud。
+第一个问题 如何让博客和网盘同时在一个VPS上提供服务？
+其实作为新手，我一开始也不太敢操作，害怕网盘会覆盖掉原来的博客目录，于是就Google了一下，明白了虚拟主机的这回事。
+Nginx 虚拟主机配置
+设置虚拟主机 这种情况下，最好的方案是设置基于域名的虚拟主机，毕竟网页访问默认是80端口。
+首先root登录到VPS下进行设置：
+cd /etc/Nginx/  为了规范化nginx配置文件，将每个虚拟主机的配置文件单独存放，这样编辑时更方便。
+mkdir -p /usr/local/nginx/conf/vhosts nano nginx.conf  把nginx.conf编辑如下：
+//删除server{} //在http{}里加入一行 include vhosts/*.conf;  这样一来，就可以对/vhosts/*.conf进行设置，实现了每个虚拟主机的独立。
+设置域名解析 同样的，不要忘了要对cloud.thekeon.tk的请求进行域名解析。
+配置基础环境 手册
+前提配置： php &amp;gt;= 7.0
+MySQL/MariaDB
+配置PHP扩展： yum search php [扩展名] yum install xxxxx  通过yum可以快速实现php扩展包的安装
+配置nginx配置文件 然后在新建的vhosts文件夹里创建虚拟主机对应的conf文件：
+cd vhosts/ nano cloud.thekeon.tk.conf  参考https://docs.nextcloud.com/server/18/admin_manual/installation/nginx.html，对代码进行小修改。</description>
+    </item>
+    
+    <item>
+      <title>SSH登录慢</title>
+      <link>https://junkaiman.github.io/blogger/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</link>
+      <pubDate>Mon, 17 Feb 2020 12:12:53 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/ssh%E7%99%BB%E5%BD%95%E6%85%A2/</guid>
+      <description>每次登陆SSH都很慢，从ssh到填密码要半分钟到一分钟。
+之前一直不在意，直到这一次换过路由器，用 hexo g -d deploy到服务器时，出现了ssh断连导致无法同步博客时，才去Google了一下如何解决。
+首先可以通过
+ssh -v xxx@xxx.com  的方法进行SSH的DEBUG，从而观察在哪一步停滞时间长。
+输入如下：
+username@LAPTOP-UBTA1OFA:~$ ssh -v git@serverhost OpenSSH_7.6p1 Ubuntu-4ubuntu0.3, OpenSSL 1.0.2n 7 Dec 2017 debug1: Reading configuration data /etc/ssh/ssh_config debug1: /etc/ssh/ssh_config line 19: Applying options for * ---------------第一次停顿----------------- debug1: Connecting to serverhost [0.0.0.0] port 22. debug1: Connection established. debug1: identity file /home/username/.ssh/id_rsa type 0 debug1: key_load_public: No such file or directory debug1: identity file /home/username/.ssh/id_rsa-cert type -1 debug1: key_load_public: No such file or directory debug1: identity file /home/username/.</description>
+    </item>
+    
+    <item>
+      <title>解删不掉的文件</title>
+      <link>https://junkaiman.github.io/blogger/%E5%88%A0%E4%B8%8D%E6%8E%89%E7%9A%84%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Wed, 12 Feb 2020 20:47:24 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/%E5%88%A0%E4%B8%8D%E6%8E%89%E7%9A%84%E6%96%87%E4%BB%B6/</guid>
+      <description>Hexo的目录下有个source文件夹用来存放资源文件，source文件夹下的文件结构在运行 hexo generate 时都会被搬运到public目录下，从而储存在服务器中。
+但是当我直接另存为文件到source目录下后，新文件竟然无法删除，文件的所有者不明，Win下的Administrator甚至没有read的权限。
+在linux下ls -l，得到的输出如下
+ls -l 输出的第二栏为该目录/文件下存在的文件个数。
+如图，对于del.bat等无法删除的文件，第二栏数值为0，这也意味着&amp;hellip;这些东西不是文件&amp;hellip;?
+后通过更改权限、强制删除、Diskgenius等方法尝试，均提示无权限。
+虽然在Win下记事本没有权限对del.bat进行修改，但del.bat可以在VScode修改并保存。但是无论是VScode的terminal还是直接进WSL都无法对该文件进行删除。
+接下来尝试一下在WINPE运行的Diskgenius中修改，重启电脑。
+在WINPE下已经看不到那些删不掉的文件了。
+再次重启电脑，返回Windows系统，删不掉的文件消失了。
+而运行ls -l
+为什么  猜测： 系统没有及时对这个索引进行清理
+猜测：
+ </description>
+    </item>
+    
+    <item>
+      <title>Hackintosh折腾实录</title>
+      <link>https://junkaiman.github.io/blogger/hackintosh%E6%8A%98%E8%85%BE%E5%AE%9E%E5%BD%95/</link>
+      <pubDate>Wed, 03 Jul 2019 09:02:43 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/hackintosh%E6%8A%98%E8%85%BE%E5%AE%9E%E5%BD%95/</guid>
+      <description>本文迁移自OneNote
+前期准备 因为上大学可能要用到mac，听说Xcode很好用，决定装黑苹果-win10双系统。
+前期看了很多教程，翻了一些论坛，最终确定以“黑果小兵”站为主要教程操作。
+https://blog.daliansky.net/
+电脑配置先用鲁大师检测一下：
+在WIN下的操作:   下载最新的10.14.5 with Clover 4928镜像 https://blog.daliansky.net/macOS-Mojave-10.14.5-18F132-official-version-with-Clover-4928-original-image.html 下载etcher 下载Diskgenuis 下载BOOTICEx64
+https://1drv.ms/u/s!Agvrg7pBqjTjagN_80MmS5cV2Pc?e=QEXJu4 将镜像通过etcher🔥烧录至U盘中（最好为16G，至少为8G） 通过Diskgenius对硬盘进行分区，划出空间给MacOS（我给了80G）   一开始不知道安装流程时支持哪种文件类型。先试了不分配，结果不认；在安装时发现并不是只识别硬盘，而是可以识别其中的ntfs分区，于是直接格式化为ntfs分区就可以了。
+ 通过Diskgenius打开启动盘下的EFI分区，将其中的Clover/config.plist复制到桌面，在notepad++中打开，查找“ig-platform-id”，找到下方的16进制代码，更换为0x59160000，这个是对应显卡Intel Graphics 620的仿冒ID，对应的是MacBook Pro14,2 即MacBook Pro (13-inch, 2017, Four Thunderbolt 3 Ports)
+这样才不会黑屏   进入BIOS  8.关机后用牙签捣一下RESET，对小新的BIOS进行一些设置：
+ [ ] test
+[*] testt
+  Boot  Boot Mode: Legacy Support Boot Priority: UEFI First Fast Boot: Disabled   Exit  OS Optimized Defaults: Disabled   调整引导项启动顺序，将启动盘放置在磁盘之前，这样可以自动跳回安装界面，阻止了Windows Boot Manager的干扰。   安装系统+转移Clover 用牙签捣一下RESET，在选项中选择BIOS menu，进入启动盘。</description>
+    </item>
+    
+    <item>
+      <title>Hexo &#43; Git 一键部署到VPS上</title>
+      <link>https://junkaiman.github.io/blogger/hexo-git-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%88%B0vps%E4%B8%8A/</link>
+      <pubDate>Wed, 03 Jul 2019 09:02:43 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/hexo-git-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%88%B0vps%E4%B8%8A/</guid>
+      <description>https://yanzai.me/hexo-git-deploy.html</description>
+    </item>
+    
+    <item>
+      <title>解决树莓派链接电视HDMI信号不支持问题</title>
+      <link>https://junkaiman.github.io/blogger/%E8%A7%A3%E5%86%B3%E6%A0%91%E8%8E%93%E6%B4%BE%E9%93%BE%E6%8E%A5%E7%94%B5%E8%A7%86hdmi%E4%BF%A1%E5%8F%B7%E4%B8%8D%E6%94%AF%E6%8C%81%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sat, 21 Oct 2017 23:13:10 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/%E8%A7%A3%E5%86%B3%E6%A0%91%E8%8E%93%E6%B4%BE%E9%93%BE%E6%8E%A5%E7%94%B5%E8%A7%86hdmi%E4%BF%A1%E5%8F%B7%E4%B8%8D%E6%94%AF%E6%8C%81%E9%97%AE%E9%A2%98/</guid>
+      <description>本文迁移自Blogspot
+家里的电视型号比较旧，对于raspberrypi内置的几个HDMI设置不能有效识别，所以在烧制好Raspbian系统后无法看到系统在做些什么。
+参考了网络上的文章，发现可以通过修改*/boot/config.txt实现一些参数的自定义。
+令hdmi_safe=1，采用通用的方法，
+可以勉强进入系统。
+但分辨率非常渣，只能达到480P。
+进入系统后，在raspberrypi configuration中打开SSH和VNC方便远程控制。
+之后，再打开config.txt文件，修改内部设置。
+hdmi_group=1 hdmi_mode=4  这样可以采用预制的HDMI参数，
+重启，可行！
+下面给出全部预设：
+These values are valid if hdmi_group=1 (CEA) hdmi_mode=1 VGA hdmi_mode=2 480p 60Hz hdmi_mode=3 480p 60Hz H hdmi_mode=4 720p 60Hz hdmi_mode=5 1080i 60Hz hdmi_mode=6 480i 60Hz hdmi_mode=7 480i 60Hz H hdmi_mode=8 240p 60Hz hdmi_mode=9 240p 60Hz H hdmi_mode=10 480i 60Hz 4x hdmi_mode=11 480i 60Hz 4x H hdmi_mode=12 240p 60Hz 4x hdmi_mode=13 240p 60Hz 4x H hdmi_mode=14 480p 60Hz 2x hdmi_mode=15 480p 60Hz 2x H hdmi_mode=16 1080p 60Hz hdmi_mode=17 576p 50Hz hdmi_mode=18 576p 50Hz H hdmi_mode=19 720p 50Hz hdmi_mode=20 1080i 50Hz hdmi_mode=21 576i 50Hz hdmi_mode=22 576i 50Hz H hdmi_mode=23 288p 50Hz hdmi_mode=24 288p 50Hz H hdmi_mode=25 576i 50Hz 4x hdmi_mode=26 576i 50Hz 4x H hdmi_mode=27 288p 50Hz 4x hdmi_mode=28 288p 50Hz 4x H hdmi_mode=29 576p 50Hz 2x hdmi_mode=30 576p 50Hz 2x H hdmi_mode=31 1080p 50Hz hdmi_mode=32 1080p 24Hz hdmi_mode=33 1080p 25Hz hdmi_mode=34 1080p 30Hz hdmi_mode=35 480p 60Hz 4x hdmi_mode=36 480p 60Hz 4xH hdmi_mode=37 576p 50Hz 4x hdmi_mode=38 576p 50Hz 4x H hdmi_mode=39 1080i 50Hz reduced blanking hdmi_mode=40 1080i 100Hz hdmi_mode=41 720p 100Hz hdmi_mode=42 576p 100Hz hdmi_mode=43 576p 100Hz H hdmi_mode=44 576i 100Hz hdmi_mode=45 576i 100Hz H hdmi_mode=46 1080i 120Hz hdmi_mode=47 720p 120Hz hdmi_mode=48 480p 120Hz hdmi_mode=49 480p 120Hz H hdmi_mode=50 480i 120Hz hdmi_mode=51 480i 120Hz H hdmi_mode=52 576p 200Hz hdmi_mode=53 576p 200Hz H hdmi_mode=54 576i 200Hz hdmi_mode=55 576i 200Hz H hdmi_mode=56 480p 240Hz hdmi_mode=57 480p 240Hz H hdmi_mode=58 480i 240Hz hdmi_mode=59 480i 240Hz H H means 16:9 variant (of a normally 4:3 mode).</description>
+    </item>
+    
+    <item>
+      <title>RaspberryPi使用静态IP</title>
+      <link>https://junkaiman.github.io/blogger/raspberrypi%E4%BD%BF%E7%94%A8%E9%9D%99%E6%80%81ip/</link>
+      <pubDate>Wed, 17 Aug 2016 23:12:45 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/raspberrypi%E4%BD%BF%E7%94%A8%E9%9D%99%E6%80%81ip/</guid>
+      <description>本文迁移自Blogspot
+家里换了个新路由器，TENDA-FH456，信号很强，但后台很简陋，却美而名之“易安装”。
+这对于普通用户不怎么影响，对我这种爱折腾科技的人就有点力不从心了，不能自定义DNS、不能将MAC与IP绑定，更没法端口映射。端口映射不重要，我得给树莓派固定个IP地址，要不然每次都进后台查IP，太不方便了。
+只能尝试从Pi上下手。
+sudo nano /etc/network/interfaces  （目前只会用nano&amp;hellip;）根据情况，修改成如下：
+auto lo iface lo inet loopback auto eth0 iface eth0 inet static address 192.168.0.12 gateway 192.168.0.1 netmask 255.255.255.0 auto wlan0 allow-hotplug wlan0 iface wlan0 inet dhcp wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf allow-hotplug wlan1 iface wlan1 inet manual wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf  其中
+auto * //代表自启 iface * inet ★ //★常见为static(静态),dhcp,manual（手动）,loopback等 //现在只了解前三种，有时间查查其他的 看还有什么功能 //如果使用了static类型，下面要跟上配置 address //静态IP地址 netmask //掩码 gateway //网关  配置完后Ctrl+X退出nano
+并输入
+sudo service networking restart //重启网络service  大功告成！</description>
+    </item>
+    
+    <item>
+      <title>企图破解电信光猫管理权限，失败。</title>
+      <link>https://junkaiman.github.io/blogger/%E4%BC%81%E5%9B%BE%E7%A0%B4%E8%A7%A3%E7%94%B5%E4%BF%A1%E5%85%89%E7%8C%AB%E7%AE%A1%E7%90%86%E6%9D%83%E9%99%90%E5%A4%B1%E8%B4%A5/</link>
+      <pubDate>Tue, 16 Aug 2016 22:39:11 +0000</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogger/%E4%BC%81%E5%9B%BE%E7%A0%B4%E8%A7%A3%E7%94%B5%E4%BF%A1%E5%85%89%E7%8C%AB%E7%AE%A1%E7%90%86%E6%9D%83%E9%99%90%E5%A4%B1%E8%B4%A5/</guid>
+      <description>本文迁移自Blogspot
+2016-8-15 第一（失败） 家里装了电信的光猫，但是它的后台只给用户了一个权限极低的账号，甚至无法更改PPPOE拨号账户，更无法进行DMZ、端口映射等，从而限制了家庭网络做服务器。
+我不甘于被控制的现状，在网络上搜索了一些破解的教程，我决定跟着教程一步步走下去，修改成完全属于自己的光猫。
+1.进入后台，登陆用户(useradmin) 2.开启telnet功能 这个型号(I-120E-Q)的猫通过访问
+http://192.168.1.1/system.cgi?telnet  可以打开telnet，而且不需要用户、密码，直接连通。
+3.拷贝设置文件 /config/config.cfg  文件为光猫内部配置文件，同时包括telecomadmin(超级用户)的密码，但是这个密码是周期性更换的，只要一连接上光纤，下一周期便通过光猫内置程序更新密码。
+可以通过tftp先将config文件提取出来。
+光猫系统(Linux)中安装了busybox，便内置了tftp。
+我尝试在PC中安装client客户端。
+busybox中的tftp使用方法是：
+tftp [参数] -p/g 地址 [端口] [参数]:-l是本地文件 后跟当前目录下文件名 [参数]:-p是PUT -g是GET  按照教程，我输入了
+tftp -l config.cfg -p 192.168.0.103  经过几次尝试，client总是提示对方拒绝了通信，不明白错误在哪。
+我又尝试输入其他指令，比如&amp;ndash;help等。
+再次输入指令时犯了一个大错误：
+tftp -l config.cfg -g 192.168.0.103  我把-p无意中写成了-g
+tftp是先创建指定名称的文件，再将数据保存的，对于重名，二话不说就覆盖。
+就这样，原配置文件丢失了，光猫相当于被重置了。
+2016-8-15 第二（自行修复） 上不去网了&amp;hellip;我只能自己试着修复，同时，telecomadmin的密码也初始化了，为出厂默认的nE7jA%5m
+进入后台，果然一些设置的权限都在该用户下（包括DMZ、端口映射等），但是现在需要重新 注册设备，要提供LOID码及密码，上网查了一下，LOID码各省区都是是不同的，有的是工单号，有的是SN码，有的是根据MAC生成的另一种串号。我弄不清楚自己所在的地方是什么，只好从10000开始打电话问客服，走咨询程序。
+第一级人工不理解我的问题，把我的问题转交给了县区（第二级）
+第二级人工也说自己不能查询，需要询问自己所在小区的维修工（第三级）
+第三级人工说自己第二天上门来修。
+无能为力，只能等待了。
+2016-8-16 第三（维修人员） 我把事情大致概括为：一开始上不去网，自己排查修复，重置了光猫，导致了这个结果。
+维修师傅进去了设备注册页面，
+他填入了我的pppoe拨号账户及密码
+看来我这地方的LOID号及密码就是上网账户啊！自己可以尝试一下的！
+之后他又做了个桥接，接上了无线路由，可以正常上网了。
+结束，算了，不倒腾了，再出啥错就丢人了。
+  思考：
+ 解决方案（猜想）</description>
+    </item>
+    
+  </channel>
+</rss>

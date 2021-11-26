@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <title>Hackintosh折腾实录 | keon.im</title>
+
+  <meta charset="UTF-8">
+  <meta name="language" content="en">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+  <meta http-equiv="expires" content="0">
+  
+  
+
+  <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+
+
+  
+  
+    
+ 
+  
+  
+  
+  
+  
+  
+    
+    <link type="text/css" rel="stylesheet" href="/css/post.min.024f4187196ec45a1c1d1de9cb3c11ca8b9fa5f355cec1424eb39325deedce53.css" integrity="sha256-Ak9BhxluxFocHR3pyzwRyoufpfNVzsFCTrOTJd7tzlM="/>
+  
+    
+    <link type="text/css" rel="stylesheet" href="/css/custom.min.2e2ca7ee8cf51347f818201af2cdaa7b8a6ec4c325da793a146a038a3626aca7.css" integrity="sha256-Liyn7oz1E0f4GCAa8s2qe4puxMMl2nk6FGoDijYmrKc="/>
+  
+  
+   
+   
+    
+
+<script type="application/ld+json">
+  
+    { 
+      "@context": "http://schema.org", 
+      "@type": "WebSite", 
+      "url": "https:\/\/junkaiman.github.io\/blogger\/hackintosh%E6%8A%98%E8%85%BE%E5%AE%9E%E5%BD%95\/",
+      "name": "Hackintosh折腾实录",
+      "author": {
+        "@type": "Person",
+        "name": ""
+      },
+      "description": ""
+    }
+  
+  </script>
+</head>
+
+<body>
+  <div class="burger__container">
+  <div class="burger" aria-controls="navigation" aria-label="Menu">
+    <div class="burger__meat burger__meat--1"></div>
+    <div class="burger__meat burger__meat--2"></div>
+    <div class="burger__meat burger__meat--3"></div>
+  </div>
+</div>
+ 
+
+  <nav class="nav" id="navigation">
+  <ul class="nav__list">
+    
+    
+      <li>
+        <a  href="/">keon.im</a>
+      </li>
+    
+      <li>
+        <a  href="/developer">developer</a>
+      </li>
+    
+      <li>
+        <a  href="/artist">artist</a>
+      </li>
+    
+      <li>
+        <a  href="https://junkaiman.notion.site/Knowledge-Open-Source-eea57ec0d2a5440f9e40a21c91d055f0">learner</a>
+      </li>
+    
+  </ul>
+</nav>
+
+
+  <main>
+    
+    
+
+    <div class="flex-wrapper">
+      <div class="post__container">
+        <div class="post">
+          <header class="post__header">
+            
+              <h1 id="post__title">Hackintosh折腾实录</h1>
+            
+            <time datetime="2019-07-03 09:02:43 &#43;0000 UTC" class="post__date">Jul 3 2019</time> 
+          </header>
+          <article class="post__content">
+              
+<p><em><strong>本文迁移自OneNote</strong></em></p>
+<h1 id="前期准备">前期准备</h1>
+<p>因为上大学可能要用到mac，听说Xcode很好用，决定装黑苹果-win10双系统。</p>
+<p>前期看了很多教程，翻了一些论坛，最终确定以“黑果小兵”站为主要教程操作。<br>
+<a href="https://blog.daliansky.net/" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>https://blog.daliansky.net/</a></p>
+<p>电脑配置先用鲁大师检测一下：<br>
+<img src="https://i.loli.net/2020/02/23/kWuPDVQmRC5x7Zh.jpg" alt="master_lu.jpg"></p>
+<h2 id="在win下的操作">在WIN下的操作:<a class="anchor" href="#在win下的操作">#</a></h2>
+<blockquote>
+<ol>
+<li>下载最新的10.14.5 with Clover 4928镜像
+<a href="https://blog.daliansky.net/macOS-Mojave-10.14.5-18F132-official-version-with-Clover-4928-original-image.html" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>https://blog.daliansky.net/macOS-Mojave-10.14.5-18F132-official-version-with-Clover-4928-original-image.html</a></li>
+<li>下载etcher</li>
+<li>下载Diskgenuis</li>
+<li>下载BOOTICEx64<br>
+<a href="https://1drv.ms/u/s!Agvrg7pBqjTjagN_80MmS5cV2Pc?e=QEXJu4" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>https://1drv.ms/u/s!Agvrg7pBqjTjagN_80MmS5cV2Pc?e=QEXJu4</a></li>
+<li>将镜像通过etcher🔥烧录至U盘中（最好为16G，至少为8G）</li>
+<li>通过Diskgenius对硬盘进行分区，划出空间给MacOS（我给了80G）</li>
+</ol>
+<blockquote>
+<p>一开始不知道安装流程时支持哪种文件类型。先试了不分配，结果不认；在安装时发现并不是只识别硬盘，而是可以识别其中的ntfs分区，于是直接格式化为ntfs分区就可以了。</p>
+</blockquote>
+<ol start="7">
+<li>通过Diskgenius打开启动盘下的EFI分区，将其中的Clover/config.plist复制到桌面，在notepad++中打开，查找“ig-platform-id”，找到下方的16进制代码，更换为0x59160000，这个是对应显卡Intel Graphics 620的仿冒ID，对应的是MacBook Pro14,2   即MacBook Pro (13-inch, 2017, Four Thunderbolt 3 Ports)<br>
+这样才不会黑屏</li>
+</ol>
+</blockquote>
+<h2 id="进入bios">进入BIOS<a class="anchor" href="#进入bios">#</a></h2>
+<blockquote>
+<p>8.关机后用牙签捣一下RESET，对小新的BIOS进行一些设置：</p>
+</blockquote>
+<p>[ ] test<br>
+[*] testt</p>
+<blockquote>
+<ul>
+<li>Boot
+<ul>
+<li>Boot Mode: <code>Legacy Support</code></li>
+<li>Boot Priority: <code>UEFI First</code></li>
+<li>Fast Boot: <code>Disabled</code></li>
+</ul>
+</li>
+<li>Exit
+<ul>
+<li>OS Optimized Defaults: <code>Disabled</code></li>
+</ul>
+</li>
+<li>调整引导项启动顺序，将启动盘放置在磁盘之前，这样可以自动跳回安装界面，阻止了Windows Boot Manager的干扰。</li>
+</ul>
+</blockquote>
+<h1 id="安装系统转移clover">安装系统+转移Clover</h1>
+<p>用牙签捣一下RESET，在选项中选择BIOS menu，进入启动盘。</p>
+<ol>
+<li>
+<p>进入磁盘管理工具，将80GNTFS分区抹掉，再重新格式化为Mac文件格式（日志式），可以重命名为Macintosh HD。</p>
+</li>
+<li>
+<p>进入安装程序，选择硬盘等等进行正常的安装操作。
+*因为intel的无线网卡失效了，所以可以跳过iCloud或者连接🔗有线进行设置。</p>
+</li>
+<li>
+<p>过程中可能会有一次重启，记得在Clover中选择引导到Macintosh HD分区，继续进行安装。</p>
+</li>
+<li>
+<p>安装过程中不要拔掉启动盘。
+*此时Clover引导还在启动盘中，下一步要将Clover转移到本地硬盘的EFI下。</p>
+</li>
+<li>
+<p>推荐回到WIN下，打开Diskgenius（因为它在应用内就可以挂载一些隐藏分区），将启动盘下的EFI/Clover整个目录复制到磁盘/EFI下（合并到/EFI下），保留其他的引导文件，使得windows也可正常引导。</p>
+</li>
+<li>
+<p>打开BOOTICEx86
+<img src="https://i.loli.net/2020/02/23/skeD6m1OEMo8r42.jpg" alt="BOOTICE1.jpg">
+先挂载磁盘的EFI分区<br>
+<img src="https://i.loli.net/2020/02/23/tkB85zfYJZQDiVa.jpg" alt="BOOTICE2.jpg">
+再在UEFI中添加磁盘中EFI的启动项，命名为Clover，上移到第一个，保存设置。</p>
+</li>
+<li>
+<p>这时就可以把启动盘撤掉了，观察是否正常进入Clover</p>
+</li>
+</ol>
+<h1 id="修修补补">修修补补</h1>
+<p>其实安装好Hackintosh只算完成了一半，要想正常使用还需要经过优化。</p>
+<h2 id="在安装后正常的组件">在安装后正常的组件：<a class="anchor" href="#在安装后正常的组件">#</a></h2>
+<ul>
+<li>有线网卡</li>
+<li>显卡</li>
+<li>触控板（简单操作）</li>
+<li>鼠标键盘</li>
+<li>USB接口</li>
+<li>……</li>
+<li>触控板的双指上下左右、缩放等可以使用，但是体验非常差
+原因是只是将手势映射到了快捷键上，并没有原生的手势识别。</li>
+</ul>
+<h2 id="在安装后不正常的组件">在安装后不正常的组件：<a class="anchor" href="#在安装后不正常的组件">#</a></h2>
+<ul>
+<li>无线网卡</li>
+<li>触控板（Mac原生操作）</li>
+<li>声卡</li>
+<li>调整亮度</li>
+<li>电池🔋显示</li>
+<li>iCloud用户量达到上限</li>
+<li>字太小</li>
+<li>鼠标滚动不流畅</li>
+</ul>
+<h2 id="针对不太正常的组件逐一优化">针对不太正常的组件逐一优化<a class="anchor" href="#针对不太正常的组件逐一优化">#</a></h2>
+<h3 id="无线网卡"><strong>无线网卡</strong><a class="anchor" href="#无线网卡">#</a></h3>
+<p>可惜，板载Intel无线网卡无法正常使用，需要在淘宝上购买免驱无线网卡或者支持驱动的其他类型网卡。</p>
+<p>在到货前，暂时的解决方法：<br>
+找一个废弃的路由器，开启Bridge桥接功能，将原来的Wi-Fi信号进行桥接，再通过LAN连接到电脑，相当于无线转有线。</p>
+<h3 id="电池显示"><strong>电池显示</strong><a class="anchor" href="#电池显示">#</a></h3>
+<p>打补丁ACPIBatteryManager.kext<br>
+放置到Clover中，启动后在系统偏好设置-节能-打开在菜单栏显示的选项</p>
+<h3 id="声卡"><strong>声卡</strong><a class="anchor" href="#声卡">#</a></h3>
+<p>我也不清楚如何设置的，但是我在kext下加载了<br>
+VoodooHDA.kext和AppleALC_v1.3.8.kext<br>
+在偶然一次重启后就可以正常使用了，猜测是添加了VoodooI2C.kext，对某个驱动有支持。</p>
+<h3 id="调整亮度"><strong>调整亮度</strong><a class="anchor" href="#调整亮度">#</a></h3>
+<p>下载Clover configurator，<br>
+<a href="https://1drv.ms/u/s!Agvrg7pBqjTja9gkuFHk6TLODN0?e=3PN6Uc" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>https://1drv.ms/u/s!Agvrg7pBqjTja9gkuFHk6TLODN0?e=3PN6Uc</a><br>
+对config.plist进行一些修改。<br>
+先在terminal中输入命令</p>
+<pre><code>sudo diskutil mount disk0s1
+</code></pre>
+<p>（应该会挂载EFI分区，如果没有，先用diskutil list查看，再将disk0s1修改）<br>
+在此之后打开<br>
+Clover Configurator
+<img src="https://i.loli.net/2020/02/23/qQXRCWgJA8OnueZ.png" alt="clover_conf"></p>
+<p>选择这个默认的config，在选择之前一定要注意备份！如果不能对NTFS读写，可以发送到QQ上。</p>
+<p><img src="https://i.loli.net/2020/02/23/GmpdS5uxO3TtgKo.png" alt="clover_conf2">
+勾选如图所示的选项，直接左下角保存。再重启，修改偏好设置-键盘-快捷键中屏幕亮度的快捷键，改为F11，F12，测试一下，应该可以了。</p>
+<h3 id="icloud用户量达到上限"><strong>iCloud用户量达到上限</strong><a class="anchor" href="#icloud用户量达到上限">#</a></h3>
+<p>原因是该系统ID对应的用户数量达到了上限，一个设备只能绑定一定数量的iCloud账户。
+同样在Clover Configurator中打开config
+<img src="https://i.loli.net/2020/02/23/wdgELp6fo4Jh9Um.png" alt="icloud.png">
+将设备Fake成MacBook Pro14,2
+<img src="https://i.loli.net/2020/02/23/d1GDBStCvuOlPeb.png" alt="icloud2.png">
+在此处选择</p>
+<p><img src="https://i.loli.net/2020/02/23/mxtn3qgQwKp2Xrd.png" alt="icloud3.png">
+注意多点几次生成新的，并“检查覆盖范围”，查看是否能在官网上搜到设备信息，选择能够搜到设备信息的序列号。<br>
+左下角保存，关闭，重启。<br>
+重新启动后查看关于本机，是否更换为了对应的型号。
+<img src="https://i.loli.net/2020/02/23/7jeqXkYxFmuN3JS.png" alt="icloud4.png"></p>
+<h3 id="字太小"><strong>字太小</strong><a class="anchor" href="#字太小">#</a></h3>
+<p>原因：不是原生4K屏幕，所以系统不识别为原生设备，无法开启Hidpi选项。</p>
+<p>安装Hidpi程序，可以在1080P下开启Hidpi</p>
+<p><img src="https://i.loli.net/2020/02/23/uZQkhticHMJUInz.png" alt="hidpi.png"></p>
+<p>***hidpi有4个选项，如果选第三个，字体大小比较好，但是会出现很多问题，如卡顿，闭屏闪屏等。<br>
+（如果关屏幕之后再打开画面变小或者闪屏，去显示器设置里再调一下，直到下一次重启前就都不会出现问题了）<br>
+选第四个动画完全不卡顿，但是缺点是字体有点小。</p>
+<h3 id="鼠标滚动不流畅"><strong>鼠标滚动不流畅</strong><a class="anchor" href="#鼠标滚动不流畅">#</a></h3>
+<p>下载Smooze for mac软件</p>
+<p>但是会出现一个问题：触控板飞速下滑！<br>
+解决方法：偏好设置-辅助功能-鼠标与触控板-触控板设置-滚动速度调低一点
+<img src="https://i.loli.net/2020/02/23/7yCagq6wFvHTGMX.png" alt="touchpad.png"></p>
+<h3 id="合盖子无法睡眠"><strong>合盖子无法睡眠</strong><a class="anchor" href="#合盖子无法睡眠">#</a></h3>
+<p>先在终端输入</p>
+<pre><code>keon$ log show |grep -i &quot;wake reason&quot; &gt; ~/Desktop/log.txt
+</code></pre>
+<p>然后再合盖子等自动唤醒，然后在桌面上会生成一个txt，看看里面写的wake reason是什么，<br>
+我的这个里面写的是GLAN XDCI应该是要注入补丁。</p>
+<p>参考 <a href="http://bbs.pcbeta.com/viewthread-1768469-1-1.html" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>http://bbs.pcbeta.com/viewthread-1768469-1-1.html</a></p>
+<p>后期再尝试解决</p>
+<h3 id="检测不到cpu内存的温度"><strong>检测不到CPU、内存的温度</strong><a class="anchor" href="#检测不到cpu内存的温度">#</a></h3>
+<p>下载这个:<br>
+<a href="https://1drv.ms/u/s!Agvrg7pBqjTjbP-1H8Fx-0lBa4A?e=3haZvb" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>https://1drv.ms/u/s!Agvrg7pBqjTjbP-1H8Fx-0lBa4A?e=3haZvb</a><br>
+然后把里面的kext（除了fakeSMC）拷到clover下面，然后重启就行了</p>
+<h1 id="常见问题">常见问题</h1>
+<p>以下是自己折腾过程中的一些理解和感悟</p>
+<ol>
+<li>
+<p>原版镜像和黑果小兵的With Clover镜像有什么不同？
+在网上查了很多黑苹果教程，有一部分是讲从mac虚拟机中提取原版安装包，再进行安装clover、创建EFI分区等复杂的操作；也有的直接讲去下载with clover版，clover就是第三方引导，可以在原版安装包前进行一些参数设置，包括fake等操作，否则原版安装包不能正常工作。</p>
+</li>
+<li>
+<p>切换到Windows时，在经历过一次Windows Boot Manager后，UEFI可能会自动恢复为原先的设置，Clover启动项被取消，这时要重新在BOOTICE上设置。</p>
+</li>
+<li>
+<p>kext的安装：
+以前的老方法是安装在MacOS系统文件下，但是这样不方便，还需要其他的文件支持，现在常用方法的是直接放到EFI/Clover/kext/Others/下，重启后Clover自动加载，如果不能正常启动，要在Windows下用Diskgenius撤销上一步操作。</p>
+</li>
+<li>
+<p>SYSTEM_DRV和EFI分区一样，不支持长久储存，要么一下子写入，要么就放弃写入，所以另存为也没用，还是保存了。所以应该先备份，再保存。</p>
+</li>
+<li>
+<p>如何删除launchpad里删不掉的应用（在finder里也找不到）<br>
+去finder中工具，就可以看到了</p>
+</li>
+</ol>
+
+
+              
+          </article>
+          
+          
+
+<ul class="tags__list">
+    
+    <li class="tag__item">
+        <a class="tag__link" href="https://junkaiman.github.io/tags/hackintosh/">hackintosh</a>
+    </li>
+    <li class="tag__item">
+        <a class="tag__link" href="https://junkaiman.github.io/tags/hack/">hack</a>
+    </li></ul>
+
+ <div class="pagination">
+  
+    <a class="pagination__item" href="https://junkaiman.github.io/blogger/hexo-git-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%88%B0vps%E4%B8%8A/">
+        <span class="pagination__label">Previous Post</span>
+        <span class="pagination__title">Hexo &#43; Git 一键部署到VPS上</span>
+    </a>
+  
+
+  
+    <a class="pagination__item" href="https://junkaiman.github.io/blogger/%E5%88%A0%E4%B8%8D%E6%8E%89%E7%9A%84%E6%96%87%E4%BB%B6/">
+      <span class="pagination__label">Next Post</span>
+      <span class="pagination__title" >解删不掉的文件</span>
+    </a>
+  
+</div>
+
+          
+          
+          <footer class="post__footer">
+            
+
+
+<div class="social-icons">
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="GitHub"
+        href="https://github.com/junkaiman"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/github.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="LinkedIn"
+        href="https://www.linkedin.com/in/junkaiman/"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/linkedin.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="Email"
+        href="mailto:junkai.man@duke.edu"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/email.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="Resume"
+        href="/resume.pdf"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/resume.svg')"></div>
+      </a>
+    
+     
+</div>
+
+            <p>© 2021 Keon</p>
+          </footer>
+          </div>
+      </div>
+      
+      <div class="toc-container">
+           <div class="toc-post-title">Hackintosh折腾实录</div> 
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#在win下的操作">在WIN下的操作:</a></li>
+    <li><a href="#进入bios">进入BIOS</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#在安装后正常的组件">在安装后正常的组件：</a></li>
+    <li><a href="#在安装后不正常的组件">在安装后不正常的组件：</a></li>
+    <li><a href="#针对不太正常的组件逐一优化">针对不太正常的组件逐一优化</a>
+      <ul>
+        <li><a href="#无线网卡"><strong>无线网卡</strong></a></li>
+        <li><a href="#电池显示"><strong>电池显示</strong></a></li>
+        <li><a href="#声卡"><strong>声卡</strong></a></li>
+        <li><a href="#调整亮度"><strong>调整亮度</strong></a></li>
+        <li><a href="#icloud用户量达到上限"><strong>iCloud用户量达到上限</strong></a></li>
+        <li><a href="#字太小"><strong>字太小</strong></a></li>
+        <li><a href="#鼠标滚动不流畅"><strong>鼠标滚动不流畅</strong></a></li>
+        <li><a href="#合盖子无法睡眠"><strong>合盖子无法睡眠</strong></a></li>
+        <li><a href="#检测不到cpu内存的温度"><strong>检测不到CPU、内存的温度</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+      
+    </div>
+    
+
+  </main>
+
+   
+
+  
+  <script src="/js/index.min.575dda8d49ee02639942c63564273e6da972ab531dda26a08800bdcb477cbd7f.js" integrity="sha256-V13ajUnuAmOZQsY1ZCc&#43;balyq1Md2iagiAC9y0d8vX8=" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js"></script>
+
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js"
+    data-autoloader-path="https://unpkg.com/prismjs@1.20.0/components/"></script>
+
+  
+    <script src="/js/table-of-contents.js"></script>
+  
+
+
+</body>
+
+</html>

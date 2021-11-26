@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Artists on keon.im</title>
+    <link>https://junkaiman.github.io/artist/</link>
+    <description>Recent content in Artists on keon.im</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year} Keon</copyright>
+    <lastBuildDate>Mon, 18 Jan 2021 12:29:01 +0800</lastBuildDate><atom:link href="https://junkaiman.github.io/artist/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🎹 Music/Audio works</title>
+      <link>https://junkaiman.github.io/artist/music/</link>
+      <pubDate>Mon, 18 Jan 2021 12:29:01 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/artist/music/</guid>
+      <description>20190205 Feb 2019
+Programmed via FL Studio. Inspiration from the 春晚小品.
+gameover June 2018
+Emo-styled lofi-hiphop beat
+20180217trap A trash-ish trap beat, programmed via FL Studio</description>
+    </item>
+    
+    <item>
+      <title>📟 Digital Arts</title>
+      <link>https://junkaiman.github.io/artist/digital-arts/</link>
+      <pubDate>Sun, 17 Jan 2021 23:44:55 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/artist/digital-arts/</guid>
+      <description>Gaze &amp;hellip;details
+Circle of Life &amp;hellip;details</description>
+    </item>
+    
+    <item>
+      <title>📷 Photography</title>
+      <link>https://junkaiman.github.io/artist/photography/</link>
+      <pubDate>Sun, 17 Jan 2021 23:44:20 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/artist/photography/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

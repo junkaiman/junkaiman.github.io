@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <title>解决树莓派链接电视HDMI信号不支持问题 | keon.im</title>
+
+  <meta charset="UTF-8">
+  <meta name="language" content="en">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+  <meta http-equiv="expires" content="0">
+  
+  
+
+  <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+
+
+  
+  
+    
+ 
+  
+  
+  
+  
+  
+  
+    
+    <link type="text/css" rel="stylesheet" href="/css/post.min.024f4187196ec45a1c1d1de9cb3c11ca8b9fa5f355cec1424eb39325deedce53.css" integrity="sha256-Ak9BhxluxFocHR3pyzwRyoufpfNVzsFCTrOTJd7tzlM="/>
+  
+    
+    <link type="text/css" rel="stylesheet" href="/css/custom.min.2e2ca7ee8cf51347f818201af2cdaa7b8a6ec4c325da793a146a038a3626aca7.css" integrity="sha256-Liyn7oz1E0f4GCAa8s2qe4puxMMl2nk6FGoDijYmrKc="/>
+  
+  
+   
+   
+    
+
+<script type="application/ld+json">
+  
+    { 
+      "@context": "http://schema.org", 
+      "@type": "WebSite", 
+      "url": "https:\/\/junkaiman.github.io\/blogger\/%E8%A7%A3%E5%86%B3%E6%A0%91%E8%8E%93%E6%B4%BE%E9%93%BE%E6%8E%A5%E7%94%B5%E8%A7%86hdmi%E4%BF%A1%E5%8F%B7%E4%B8%8D%E6%94%AF%E6%8C%81%E9%97%AE%E9%A2%98\/",
+      "name": "解决树莓派链接电视HDMI信号不支持问题",
+      "author": {
+        "@type": "Person",
+        "name": ""
+      },
+      "description": ""
+    }
+  
+  </script>
+</head>
+
+<body>
+  <div class="burger__container">
+  <div class="burger" aria-controls="navigation" aria-label="Menu">
+    <div class="burger__meat burger__meat--1"></div>
+    <div class="burger__meat burger__meat--2"></div>
+    <div class="burger__meat burger__meat--3"></div>
+  </div>
+</div>
+ 
+
+  <nav class="nav" id="navigation">
+  <ul class="nav__list">
+    
+    
+      <li>
+        <a  href="/">keon.im</a>
+      </li>
+    
+      <li>
+        <a  href="/developer">developer</a>
+      </li>
+    
+      <li>
+        <a  href="/artist">artist</a>
+      </li>
+    
+      <li>
+        <a  href="https://junkaiman.notion.site/Knowledge-Open-Source-eea57ec0d2a5440f9e40a21c91d055f0">learner</a>
+      </li>
+    
+  </ul>
+</nav>
+
+
+  <main>
+    
+    
+
+    <div class="flex-wrapper">
+      <div class="post__container">
+        <div class="post">
+          <header class="post__header">
+            
+              <h1 id="post__title">解决树莓派链接电视HDMI信号不支持问题</h1>
+            
+            <time datetime="2017-10-21 23:13:10 &#43;0000 UTC" class="post__date">Oct 21 2017</time> 
+          </header>
+          <article class="post__content">
+              
+<p><em><strong>本文迁移自Blogspot</strong></em></p>
+<p>家里的电视型号比较旧，对于raspberrypi内置的几个HDMI设置不能有效识别，所以在烧制好Raspbian系统后无法看到系统在做些什么。</p>
+<p>参考了网络上的文章，发现可以通过修改<code>*/boot/config.txt</code>实现一些参数的自定义。</p>
+<p>令hdmi_safe=1，采用通用的方法，<br>
+可以勉强进入系统。</p>
+<p><img src="https://i.loli.net/2020/02/23/xt4oq2dGepPCSsO.jpg" alt="alt 进入了SafeMode"></p>
+<p>但分辨率非常渣，只能达到480P。<br>
+进入系统后，在raspberrypi configuration中打开SSH和VNC方便远程控制。</p>
+<p><img src="https://i.loli.net/2020/02/23/1JM2rSWXVAYgEbc.png" alt="alt VNC"></p>
+<p>之后，再打开config.txt文件，修改内部设置。</p>
+<pre><code>hdmi_group=1  
+hdmi_mode=4  
+</code></pre>
+<p>这样可以采用预制的HDMI参数，<br>
+重启，可行！</p>
+<p>下面给出全部预设：</p>
+<pre><code>These values are valid if hdmi_group=1 (CEA)
+hdmi_mode=1 VGA
+hdmi_mode=2 480p 60Hz
+hdmi_mode=3 480p 60Hz H
+hdmi_mode=4 720p 60Hz
+hdmi_mode=5 1080i 60Hz
+hdmi_mode=6 480i 60Hz
+hdmi_mode=7 480i 60Hz H
+hdmi_mode=8 240p 60Hz
+hdmi_mode=9 240p 60Hz H
+hdmi_mode=10 480i 60Hz 4x
+hdmi_mode=11 480i 60Hz 4x H
+hdmi_mode=12 240p 60Hz 4x
+hdmi_mode=13 240p 60Hz 4x H
+hdmi_mode=14 480p 60Hz 2x
+hdmi_mode=15 480p 60Hz 2x H
+hdmi_mode=16 1080p 60Hz
+hdmi_mode=17 576p 50Hz
+hdmi_mode=18 576p 50Hz H
+hdmi_mode=19 720p 50Hz
+hdmi_mode=20 1080i 50Hz
+hdmi_mode=21 576i 50Hz
+hdmi_mode=22 576i 50Hz H
+hdmi_mode=23 288p 50Hz
+hdmi_mode=24 288p 50Hz H
+hdmi_mode=25 576i 50Hz 4x
+hdmi_mode=26 576i 50Hz 4x H
+hdmi_mode=27 288p 50Hz 4x
+hdmi_mode=28 288p 50Hz 4x H
+hdmi_mode=29 576p 50Hz 2x
+hdmi_mode=30 576p 50Hz 2x H
+hdmi_mode=31 1080p 50Hz
+hdmi_mode=32 1080p 24Hz
+hdmi_mode=33 1080p 25Hz
+hdmi_mode=34 1080p 30Hz
+hdmi_mode=35 480p 60Hz 4x
+hdmi_mode=36 480p 60Hz 4xH
+hdmi_mode=37 576p 50Hz 4x
+hdmi_mode=38 576p 50Hz 4x H
+hdmi_mode=39 1080i 50Hz reduced blanking
+hdmi_mode=40 1080i 100Hz
+hdmi_mode=41 720p 100Hz
+hdmi_mode=42 576p 100Hz
+hdmi_mode=43 576p 100Hz H
+hdmi_mode=44 576i 100Hz
+hdmi_mode=45 576i 100Hz H
+hdmi_mode=46 1080i 120Hz
+hdmi_mode=47 720p 120Hz
+hdmi_mode=48 480p 120Hz
+hdmi_mode=49 480p 120Hz H
+hdmi_mode=50 480i 120Hz
+hdmi_mode=51 480i 120Hz H
+hdmi_mode=52 576p 200Hz
+hdmi_mode=53 576p 200Hz H
+hdmi_mode=54 576i 200Hz
+hdmi_mode=55 576i 200Hz H
+hdmi_mode=56 480p 240Hz
+hdmi_mode=57 480p 240Hz H
+hdmi_mode=58 480i 240Hz
+hdmi_mode=59 480i 240Hz H
+H means 16:9 variant (of a normally 4:3 mode).
+2x means pixel doubled (i.e. higher clock rate, with each pixel repeated twice)
+4x means pixel quadrupled (i.e. higher clock rate, with each pixel repeated four times)
+
+
+These values are valid if hdmi_group=2 (DMT)
+hdmi_mode=1 640x350 85Hz
+hdmi_mode=2 640x400 85Hz
+hdmi_mode=3 720x400 85Hz
+hdmi_mode=4 640x480 60Hz
+hdmi_mode=5 640x480 72Hz
+hdmi_mode=6 640x480 75Hz
+hdmi_mode=7 640x480 85Hz
+hdmi_mode=8 800x600 56Hz
+hdmi_mode=9 800x600 60Hz
+hdmi_mode=10 800x600 72Hz
+hdmi_mode=11 800x600 75Hz
+hdmi_mode=12 800x600 85Hz
+hdmi_mode=13 800x600 120Hz
+hdmi_mode=14 848x480 60Hz
+hdmi_mode=15 1024x768 43Hz DO NOT USE
+hdmi_mode=16 1024x768 60Hz
+hdmi_mode=17 1024x768 70Hz
+hdmi_mode=18 1024x768 75Hz
+hdmi_mode=19 1024x768 85Hz
+hdmi_mode=20 1024x768 120Hz
+hdmi_mode=21 1152x864 75Hz
+hdmi_mode=22 1280x768 reduced blanking
+hdmi_mode=23 1280x768 60Hz
+hdmi_mode=24 1280x768 75Hz
+hdmi_mode=25 1280x768 85Hz
+hdmi_mode=26 1280x768 120Hz reduced blanking
+hdmi_mode=27 1280x800 reduced blanking
+hdmi_mode=28 1280x800 60Hz
+hdmi_mode=29 1280x800 75Hz
+hdmi_mode=30 1280x800 85Hz
+hdmi_mode=31 1280x800 120Hz reduced blanking
+hdmi_mode=32 1280x960 60Hz
+hdmi_mode=33 1280x960 85Hz
+hdmi_mode=34 1280x960 120Hz reduced blanking
+hdmi_mode=35 1280x1024 60Hz
+hdmi_mode=36 1280x1024 75Hz
+hdmi_mode=37 1280x1024 85Hz
+hdmi_mode=38 1280x1024 120Hz reduced blanking
+hdmi_mode=39 1360x768 60Hz
+hdmi_mode=40 1360x768 120Hz reduced blanking
+hdmi_mode=41 1400x1050 reduced blanking
+hdmi_mode=42 1400x1050 60Hz
+hdmi_mode=43 1400x1050 75Hz
+hdmi_mode=44 1400x1050 85Hz
+hdmi_mode=45 1400x1050 120Hz reduced blanking
+hdmi_mode=46 1440x900 reduced blanking
+hdmi_mode=47 1440x900 60Hz
+hdmi_mode=48 1440x900 75Hz
+hdmi_mode=49 1440x900 85Hz
+hdmi_mode=50 1440x900 120Hz reduced blanking
+hdmi_mode=51 1600x1200 60Hz
+hdmi_mode=52 1600x1200 65Hz
+hdmi_mode=53 1600x1200 70Hz
+hdmi_mode=54 1600x1200 75Hz
+hdmi_mode=55 1600x1200 85Hz
+hdmi_mode=56 1600x1200 120Hz reduced blanking
+hdmi_mode=57 1680x1050 reduced blanking
+hdmi_mode=58 1680x1050 60Hz
+hdmi_mode=59 1680x1050 75Hz
+hdmi_mode=60 1680x1050 85Hz
+hdmi_mode=61 1680x1050 120Hz reduced blanking
+hdmi_mode=62 1792x1344 60Hz
+hdmi_mode=63 1792x1344 75Hz
+hdmi_mode=64 1792x1344 120Hz reduced blanking
+hdmi_mode=65 1856x1392 60Hz
+hdmi_mode=66 1856x1392 75Hz
+hdmi_mode=67 1856x1392 120Hz reduced blanking
+hdmi_mode=68 1920x1200 reduced blanking
+hdmi_mode=69 1920x1200 60Hz
+hdmi_mode=70 1920x1200 75Hz
+hdmi_mode=71 1920x1200 85Hz
+hdmi_mode=72 1920x1200 120Hz reduced blanking
+hdmi_mode=73 1920x1440 60Hz
+hdmi_mode=74 1920x1440 75Hz
+hdmi_mode=75 1920x1440 120Hz reduced blanking
+hdmi_mode=76 2560x1600 reduced blanking
+hdmi_mode=77 2560x1600 60Hz
+hdmi_mode=78 2560x1600 75Hz
+hdmi_mode=79 2560x1600 85Hz
+hdmi_mode=80 2560x1600 120Hz reduced blanking
+hdmi_mode=81 1366x768 60Hz
+hdmi_mode=82 1080p 60Hz
+hdmi_mode=83 1600x900 reduced blanking
+hdmi_mode=84 2048x1152 reduced blanking
+hdmi_mode=85 720p 60Hz
+hdmi_mode=86 1366x768 reduced blanking</code></pre>
+
+
+              
+          </article>
+          
+          
+
+<ul class="tags__list">
+    
+    <li class="tag__item">
+        <a class="tag__link" href="https://junkaiman.github.io/tags/raspberrypi/">RaspberryPi</a>
+    </li></ul>
+
+ <div class="pagination">
+  
+    <a class="pagination__item" href="https://junkaiman.github.io/blogger/raspberrypi%E4%BD%BF%E7%94%A8%E9%9D%99%E6%80%81ip/">
+        <span class="pagination__label">Previous Post</span>
+        <span class="pagination__title">RaspberryPi使用静态IP</span>
+    </a>
+  
+
+  
+    <a class="pagination__item" href="https://junkaiman.github.io/blogger/hexo-git-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%88%B0vps%E4%B8%8A/">
+      <span class="pagination__label">Next Post</span>
+      <span class="pagination__title" >Hexo &#43; Git 一键部署到VPS上</span>
+    </a>
+  
+</div>
+
+          
+          
+          <footer class="post__footer">
+            
+
+
+<div class="social-icons">
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="GitHub"
+        href="https://github.com/junkaiman"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/github.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="LinkedIn"
+        href="https://www.linkedin.com/in/junkaiman/"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/linkedin.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="Email"
+        href="mailto:junkai.man@duke.edu"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/email.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="Resume"
+        href="/resume.pdf"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/resume.svg')"></div>
+      </a>
+    
+     
+</div>
+
+            <p>© 2021 Keon</p>
+          </footer>
+          </div>
+      </div>
+      
+      <div class="toc-container">
+           <div class="toc-post-title">解决树莓派链接电视HDMI信号不支持问题</div> 
+        <nav id="TableOfContents"></nav>
+      </div>
+      
+    </div>
+    
+
+  </main>
+
+   
+
+  
+  <script src="/js/index.min.575dda8d49ee02639942c63564273e6da972ab531dda26a08800bdcb477cbd7f.js" integrity="sha256-V13ajUnuAmOZQsY1ZCc&#43;balyq1Md2iagiAC9y0d8vX8=" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js"></script>
+
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js"
+    data-autoloader-path="https://unpkg.com/prismjs@1.20.0/components/"></script>
+
+  
+    <script src="/js/table-of-contents.js"></script>
+  
+
+
+</body>
+
+</html>

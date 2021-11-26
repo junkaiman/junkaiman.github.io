@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hadoop on keon.im</title>
+    <link>https://junkaiman.github.io/tags/hadoop/</link>
+    <description>Recent content in Hadoop on keon.im</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year} Keon</copyright>
+    <lastBuildDate>Fri, 26 Nov 2021 12:21:47 +0800</lastBuildDate><atom:link href="https://junkaiman.github.io/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>⛏ Data Mining Internship at China Unicom</title>
+      <link>https://junkaiman.github.io/blogs/summer-internship-at-china-unicom/</link>
+      <pubDate>Fri, 26 Nov 2021 12:21:47 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/blogs/summer-internship-at-china-unicom/</guid>
+      <description>This is my very first internship in my life.
+Responsibilities Takeaways </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>openFrameworks on keon.im</title>
+    <link>https://junkaiman.github.io/tags/openframeworks/</link>
+    <description>Recent content in openFrameworks on keon.im</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year} Keon</copyright>
+    <lastBuildDate>Mon, 18 Jan 2021 12:21:47 +0800</lastBuildDate><atom:link href="https://junkaiman.github.io/tags/openframeworks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Circle of Life</title>
+      <link>https://junkaiman.github.io/works/art/circle-of-life/</link>
+      <pubDate>Mon, 18 Jan 2021 12:21:47 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/works/art/circle-of-life/</guid>
+      <description>This is a midterm project for MEDIART-206 Computer Graphics.
+Environment  openFrameworks v0.11.0  Project Proposal In the midterm project, I plan to design an interactive game that triggers the player to take in-depth thinking around the philosophy of making mistakes.
+Inspired by the film Triangle, I plan to use a mechanism that will be different from most 2d adventure games. After the player dies, instead of clearing everything and restart the level, in this game, the player will respawn with their previous bodies that replay their previous operations.</description>
+    </item>
+    
+    <item>
+      <title>Gaze</title>
+      <link>https://junkaiman.github.io/works/art/gaze/</link>
+      <pubDate>Sun, 17 Jan 2021 22:17:33 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/works/art/gaze/</guid>
+      <description>This is a final project for MEDIART-206 Computer Graphics.
+Environment  openFrameworks v0.11.0 FaceOSC v1.2  Notice For this project, you will need FaceOSC installed first: Get the latest version of FaceOSC from here.
+Please compile &amp;amp; run the gaze application first, and then run the FaceOSC.
+Project Proposal ​ In the final project, I plan to design a device that applies face tracking technology into art exhibition.
+​ It’s a common scene that audiences at art gallery will usually gaze at artwork for a long time to observe the details and feel the in-depth meanings behind the works.</description>
+    </item>
+    
+  </channel>
+</rss>

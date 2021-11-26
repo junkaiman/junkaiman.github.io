@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WeChat-MiniProgram on keon.im</title>
+    <link>https://junkaiman.github.io/tags/wechat-miniprogram/</link>
+    <description>Recent content in WeChat-MiniProgram on keon.im</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year} Keon</copyright>
+    <lastBuildDate>Sun, 17 Jan 2021 22:17:33 +0800</lastBuildDate><atom:link href="https://junkaiman.github.io/tags/wechat-miniprogram/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gallinula</title>
+      <link>https://junkaiman.github.io/works/dev/gallinula/</link>
+      <pubDate>Sun, 17 Jan 2021 22:17:33 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/works/dev/gallinula/</guid>
+      <description>🦆Gallinula is a Campus-Services-All-in-One Platform. The name comes from Gallinula Chloropus, which is a specie of duck that is frequently seen on campus. It is also widely (but not officially) acknowledged as the mascot of Duke Kunshan University.
+The following services are offered by Gallinula and currently bringing conveniences to hundreds of our DKU members including students and faculties!
+When&amp;rsquo;s the next shuttle? A Siri shortcut that enables you to check the next shuttle time within seconds by simply saying &amp;ldquo;Hey Siri, next shuttle&amp;rdquo;.</description>
+    </item>
+    
+  </channel>
+</rss>

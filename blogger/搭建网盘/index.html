@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <title>搭建网盘！ | keon.im</title>
+
+  <meta charset="UTF-8">
+  <meta name="language" content="en">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+  <meta http-equiv="expires" content="0">
+  
+  
+
+  <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+
+
+  
+  
+    
+ 
+  
+  
+  
+  
+  
+  
+    
+    <link type="text/css" rel="stylesheet" href="/css/post.min.024f4187196ec45a1c1d1de9cb3c11ca8b9fa5f355cec1424eb39325deedce53.css" integrity="sha256-Ak9BhxluxFocHR3pyzwRyoufpfNVzsFCTrOTJd7tzlM="/>
+  
+    
+    <link type="text/css" rel="stylesheet" href="/css/custom.min.2e2ca7ee8cf51347f818201af2cdaa7b8a6ec4c325da793a146a038a3626aca7.css" integrity="sha256-Liyn7oz1E0f4GCAa8s2qe4puxMMl2nk6FGoDijYmrKc="/>
+  
+  
+   
+   
+    
+
+<script type="application/ld+json">
+  
+    { 
+      "@context": "http://schema.org", 
+      "@type": "WebSite", 
+      "url": "https:\/\/junkaiman.github.io\/blogger\/%E6%90%AD%E5%BB%BA%E7%BD%91%E7%9B%98\/",
+      "name": "搭建网盘！",
+      "author": {
+        "@type": "Person",
+        "name": ""
+      },
+      "description": ""
+    }
+  
+  </script>
+</head>
+
+<body>
+  <div class="burger__container">
+  <div class="burger" aria-controls="navigation" aria-label="Menu">
+    <div class="burger__meat burger__meat--1"></div>
+    <div class="burger__meat burger__meat--2"></div>
+    <div class="burger__meat burger__meat--3"></div>
+  </div>
+</div>
+ 
+
+  <nav class="nav" id="navigation">
+  <ul class="nav__list">
+    
+    
+      <li>
+        <a  href="/">keon.im</a>
+      </li>
+    
+      <li>
+        <a  href="/developer">developer</a>
+      </li>
+    
+      <li>
+        <a  href="/artist">artist</a>
+      </li>
+    
+      <li>
+        <a  href="https://junkaiman.notion.site/Knowledge-Open-Source-eea57ec0d2a5440f9e40a21c91d055f0">learner</a>
+      </li>
+    
+  </ul>
+</nav>
+
+
+  <main>
+    
+    
+
+    <div class="flex-wrapper">
+      <div class="post__container">
+        <div class="post">
+          <header class="post__header">
+            
+              <h1 id="post__title">搭建网盘！</h1>
+            
+            <time datetime="2020-02-17 21:02:09 &#43;0000 UTC" class="post__date">Feb 17 2020</time> 
+          </header>
+          <article class="post__content">
+              
+<h1 id="前言">前言</h1>
+<p>这几天又搞了搞BTSync（现在改名了叫Resilio），想到自己的VPS可以做一个中转储存器，这样的话无论什么时候都能下载到文件，但是一想这样还是有点复杂，要下载客户端才能同步文件，不如直接搭建个在线网页版的网盘，这样一来给别人分享文件也方便了。</p>
+<p>大致搜了一下，市面上有很多产品，我研究了一下各自的Demo：</p>
+<blockquote>
+<p>cloudreve:<br>
+支持第三方储存，可以节省VPS的流量和储存。但是失更了。<br>
+owncloud:<br>
+也是比较老<br>
+seafile:
+比较老了，虽然说可以Office在线协作，但是要付费，免费版只能下载客户端才能用，没有网页入口<br>
+nextcloud:<br>
+目前仍然在稳定更新 是owncloud的衍生版本，免费版可以md在线协作，付费了可以用Collabora Online在线协作。<br>
+dzzoffice:<br>
+也是放弃了，放到了社区，在线文档协作好像出了点问题。</p>
+</blockquote>
+<p>最后决定用nextcloud。</p>
+<h1 id="第一个问题">第一个问题</h1>
+<p>如何让博客和网盘同时在一个VPS上提供服务？</p>
+<p>其实作为新手，我一开始也不太敢操作，害怕网盘会覆盖掉原来的博客目录，于是就Google了一下，明白了虚拟主机的这回事。<br>
+<a href="https://www.cnblogs.com/wushuaishuai/p/9343044.html" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>Nginx 虚拟主机配置</a></p>
+<h2 id="设置虚拟主机">设置虚拟主机<a class="anchor" href="#设置虚拟主机">#</a></h2>
+<p>这种情况下，最好的方案是设置<code>基于域名的虚拟主机</code>，毕竟网页访问默认是80端口。</p>
+<p>首先root登录到VPS下进行设置：</p>
+<pre><code>cd /etc/Nginx/
+</code></pre>
+<p>为了规范化nginx配置文件，将每个虚拟主机的配置文件单独存放，这样编辑时更方便。</p>
+<pre><code>mkdir -p /usr/local/nginx/conf/vhosts
+nano nginx.conf
+</code></pre>
+<p>把nginx.conf编辑如下：</p>
+<pre><code class="language-c">//删除server{}
+//在http{}里加入一行
+include vhosts/*.conf;
+</code></pre>
+<p>这样一来，就可以对/vhosts/*.conf进行设置，实现了每个虚拟主机的独立。</p>
+<h2 id="设置域名解析">设置域名解析<a class="anchor" href="#设置域名解析">#</a></h2>
+<p>同样的，不要忘了要对cloud.thekeon.tk的请求进行域名解析。</p>
+<h1 id="配置基础环境">配置基础环境</h1>
+<p><a href="https://nextcloud.com/install/#instructions-server" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>手册</a></p>
+<h2 id="前提配置">前提配置：<a class="anchor" href="#前提配置">#</a></h2>
+<p>php &gt;= 7.0<br>
+MySQL/MariaDB</p>
+<h2 id="配置php扩展">配置PHP扩展：<a class="anchor" href="#配置php扩展">#</a></h2>
+<pre><code>yum search php [扩展名]
+yum install xxxxx
+</code></pre>
+<p>通过yum可以快速实现php扩展包的安装</p>
+<h1 id="配置nginx配置文件">配置nginx配置文件</h1>
+<p>然后在新建的vhosts文件夹里创建虚拟主机对应的conf文件：</p>
+<pre><code>cd vhosts/
+nano cloud.thekeon.tk.conf
+</code></pre>
+<p>参考<a href="https://docs.nextcloud.com/server/18/admin_manual/installation/nginx.html" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>https://docs.nextcloud.com/server/18/admin_manual/installation/nginx.html</a>，对代码进行小修改。</p>
+<pre><code class="language-properties">upstream php-handler {
+    server 127.0.0.1:9000;
+    #server unix:/var/run/php/php7.2-fpm.sock;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name cloud.thekeon.tk;
+    # enforce https
+    return 301 https://$server_name:444$request_uri;
+}
+
+server {
+    listen 444 ssl http2;
+    listen [::]:444 ssl http2;
+    server_name cloud.thekeon.tk;
+
+    # Use Mozilla's guidelines for SSL/TLS settings
+    # https://mozilla.github.io/server-side-tls/ssl-config-generator/
+    # NOTE: some settings below might be redundant
+    ssl_certificate /usr/src/xxxxx/xxx.cer;
+    ssl_certificate_key /usr/src/xxxxx/private.key;
+
+    # Add headers to serve security related headers
+    # Before enabling Strict-Transport-Security headers please read into this
+    # topic first.
+    #add_header Strict-Transport-Security &quot;max-age=15768000; includeSubDomains; preload;&quot; always;
+    #
+    # WARNING: Only add the preload option once you read about
+    # the consequences in https://hstspreload.org/. This option
+    # will add the domain to a hardcoded list that is shipped
+    # in all major browsers and getting removed from this list
+    # could take several months.
+    add_header Referrer-Policy &quot;no-referrer&quot; always;
+    add_header X-Content-Type-Options &quot;nosniff&quot; always;
+    add_header X-Download-Options &quot;noopen&quot; always;
+    add_header X-Frame-Options &quot;SAMEORIGIN&quot; always;
+    add_header X-Permitted-Cross-Domain-Policies &quot;none&quot; always;
+    add_header X-Robots-Tag &quot;none&quot; always;
+    add_header X-XSS-Protection &quot;1; mode=block&quot; always;
+
+    # Remove X-Powered-By, which is an information leak
+    fastcgi_hide_header X-Powered-By;
+
+    # Path to the root of your installation
+    root /usr/share/nginx/nextcloud
+
+    location = /robots.txt {
+        allow all;
+        log_not_found off;
+        access_log off;
+    }
+
+    # The following 2 rules are only needed for the user_webfinger app.
+    # Uncomment it if you're planning to use this app.
+    #rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+    #rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json last;
+
+    # The following rule is only needed for the Social app.
+    # Uncomment it if you're planning to use this app.
+    #rewrite ^/.well-known/webfinger /public.php?service=webfinger last;
+
+    location = /.well-known/carddav {
+      return 301 $scheme://$host:$server_port/remote.php/dav;
+    }
+    location = /.well-known/caldav {
+      return 301 $scheme://$host:$server_port/remote.php/dav;
+    }
+
+    # set max upload size
+    client_max_body_size 512M;
+    fastcgi_buffers 64 4K;
+
+    # Enable gzip but do not remove ETag headers
+    gzip on;
+    gzip_vary on;
+    gzip_comp_level 4;
+    gzip_min_length 256;
+    gzip_proxied expired no-cache no-store private no_last_modified no_etag auth;
+    gzip_types application/atom+xml application/javascript application/json application/ld+json application/manifest+json application/rss+xml application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/bmp image/svg+xml image/x-icon text/cache-manifest text/css text/plain text/vcard text/vnd.rim.location.xloc text/vtt text/x-component text/x-cross-domain-policy;
+
+    # Uncomment if your server is build with the ngx_pagespeed module
+    # This module is currently not supported.
+    #pagespeed off;
+
+    location / {
+        rewrite ^ /index.php;
+    }
+
+    location ~ ^\/(?:build|tests|config|lib|3rdparty|templates|data)\/ {
+        deny all;
+    }
+    location ~ ^\/(?:\.|autotest|occ|issue|indie|db_|console) {
+        deny all;
+    }
+
+    location ~ ^\/(?:index|remote|public|cron|core\/ajax\/update|status|ocs\/v[12]|updater\/.+|oc[ms]-provider\/.+)\.php(?:$|\/) {
+        fastcgi_split_path_info ^(.+?\.php)(\/.*|)$;
+        set $path_info $fastcgi_path_info;
+        try_files $fastcgi_script_name =404;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $path_info;
+        fastcgi_param HTTPS on;
+        # Avoid sending the security headers twice
+        fastcgi_param modHeadersAvailable true;
+        # Enable pretty urls
+        fastcgi_param front_controller_active true;
+        fastcgi_pass php-handler;
+        fastcgi_intercept_errors on;
+        fastcgi_request_buffering off;
+    }
+
+    location ~ ^\/(?:updater|oc[ms]-provider)(?:$|\/) {
+        try_files $uri/ =404;
+        index index.php;
+    }
+
+    # Adding the cache control header for js, css and map files
+    # Make sure it is BELOW the PHP block
+    location ~ \.(?:css|js|woff2?|svg|gif|map)$ {
+        try_files $uri /index.php$request_uri;
+        add_header Cache-Control &quot;public, max-age=15778463&quot;;
+        # Add headers to serve security related headers (It is intended to
+        # have those duplicated to the ones above)
+        # Before enabling Strict-Transport-Security headers please read into
+        # this topic first.
+        #add_header Strict-Transport-Security &quot;max-age=15768000; includeSubDomains; preload;&quot; always;
+        #
+        # WARNING: Only add the preload option once you read about
+        # the consequences in https://hstspreload.org/. This option
+        # will add the domain to a hardcoded list that is shipped
+        # in all major browsers and getting removed from this list
+        # could take several months.
+        add_header Referrer-Policy &quot;no-referrer&quot; always;
+        add_header X-Content-Type-Options &quot;nosniff&quot; always;
+        add_header X-Download-Options &quot;noopen&quot; always;
+        add_header X-Frame-Options &quot;SAMEORIGIN&quot; always;
+        add_header X-Permitted-Cross-Domain-Policies &quot;none&quot; always;
+        add_header X-Robots-Tag &quot;none&quot; always;
+        add_header X-XSS-Protection &quot;1; mode=block&quot; always;
+
+        # Optional: Don't log access to assets
+        access_log off;
+    }
+
+    location ~ \.(?:png|html|ttf|ico|jpg|jpeg|bcmap)$ {
+        try_files $uri /index.php$request_uri;
+        # Optional: Don't log access to other assets
+        access_log off;
+    }
+}
+</code></pre>
+<p>之后运行<br>
+<code>nginx -t</code> 对配置文件进行测试<br>
+再运行 <code>nginx -s reload</code><br>
+对nginx进行重启</p>
+<h1 id="配置nextcloud文件夹">配置nextcloud文件夹</h1>
+<p>建立相应的nextcloud的文件夹，并777授权</p>
+<pre><code>chmod 777 nextcloud
+</code></pre>
+<p>参照<a href="https://nextcloud.com/install/#instructions-server" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>手册</a>，将脚本下载到服务器上：</p>
+<pre><code>wget https://download.nextcloud.com/server/installer/setup-nextcloud.php
+</code></pre>
+<p>脚本也777授权</p>
+<pre><code>chmod 777 setup-nextcloud.php
+</code></pre>
+<h2 id="在线配置安装">在线配置安装<a class="anchor" href="#在线配置安装">#</a></h2>
+<p>等待域名解析到cloud子域名后，刷新</p>
+<pre><code>https://cloud.thekeon.tk/setup-nextcloud.php
+</code></pre>
+<h1 id="申请https证书"><del>申请https证书</del></h1>
+<p>用acme.sh</p>
+<pre><code>mkdir /usr/src/cloud-cert
+    curl https://get.acme.sh | sh
+    ~/.acme.sh/acme.sh  --issue  -d cloud.thekeon.tk  --webroot /usr/share/nginx/cloud/
+        ~/.acme.sh/acme.sh  --installcert  -d  cloud.thekeon.tk   \
+        --key-file   /usr/src/cloud-cert/private.key \
+        --fullchain-file /usr/src/cloud-cert/fullchain.cer \
+        --reloadcmd  &quot;systemctl force-reload  nginx.service&quot; 
+</code></pre>
+<p>申请个二级域名的证书，acme验证没过关&hellip;only支持443和80,,,444就没法验证&hellip;.
+要不先停掉443端口的程序, 把那个开成443，再来</p>
+<p>也不行。。</p>
+<p>遇到了点问题&hellip;.</p>
+<hr>
+<h1 id="遗留下来的问题">遗留下来的问题</h1>
+<ol>
+<li>着实有点慢，服务器在外面，访问速度有点慢，而且CPU也不怎么地，online协作还可以，如果真是上传下载大文件的话有点慢了。速度也就是1M/s。</li>
+<li>Online Collabora还不太完美</li>
+<li>Https证书没下来，看一看用dnspod做验证</li>
+<li>443端口被占用了，暂时用444端口很憋屈&hellip;</li>
+</ol>
+<p>后台检测出来的警告：
+<img src="https://i.loli.net/2020/02/23/W4wfONPimx2BZYo.jpg" alt="后台检测出来的警告"></p>
+<h1 id="学会了点啥">学会了点啥？</h1>
+<ol>
+<li>nginx.conf的配置</li>
+<li>Nginx虚拟主机</li>
+<li>利用acme.sh进行ssl证书申请的过程</li>
+<li></li>
+</ol>
+<hr>
+<p>参考：
+<a href="https://docs.nextcloud.com/server/18/admin_manual/installation/example_centos.html" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>https://docs.nextcloud.com/server/18/admin_manual/installation/example_centos.html</a></p>
+<p><a href="https://docs.nextcloud.com/server/18/admin_manual/installation/nginx.html" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>https://docs.nextcloud.com/server/18/admin_manual/installation/nginx.html</a></p>
+
+
+              
+          </article>
+          
+          
+
+<ul class="tags__list">
+    
+    <li class="tag__item">
+        <a class="tag__link" href="https://junkaiman.github.io/tags/hack/">hack</a>
+    </li></ul>
+
+ <div class="pagination">
+  
+    <a class="pagination__item" href="https://junkaiman.github.io/blogger/ssh%E7%99%BB%E5%BD%95%E6%85%A2/">
+        <span class="pagination__label">Previous Post</span>
+        <span class="pagination__title">SSH登录慢</span>
+    </a>
+  
+
+  
+    <a class="pagination__item" href="https://junkaiman.github.io/blogger/%E7%94%A8acme-sh%E7%94%B3%E8%AF%B7ssl%E8%AF%81%E4%B9%A6/">
+      <span class="pagination__label">Next Post</span>
+      <span class="pagination__title" >用acme.sh申请SSL证书</span>
+    </a>
+  
+</div>
+
+          
+          
+          <footer class="post__footer">
+            
+
+
+<div class="social-icons">
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="GitHub"
+        href="https://github.com/junkaiman"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/github.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="LinkedIn"
+        href="https://www.linkedin.com/in/junkaiman/"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/linkedin.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="Email"
+        href="mailto:junkai.man@duke.edu"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/email.svg')"></div>
+      </a>
+    
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="Resume"
+        href="/resume.pdf"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://junkaiman.github.io/svg/resume.svg')"></div>
+      </a>
+    
+     
+</div>
+
+            <p>© 2021 Keon</p>
+          </footer>
+          </div>
+      </div>
+      
+      <div class="toc-container">
+           <div class="toc-post-title">搭建网盘！</div> 
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#设置虚拟主机">设置虚拟主机</a></li>
+    <li><a href="#设置域名解析">设置域名解析</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#前提配置">前提配置：</a></li>
+    <li><a href="#配置php扩展">配置PHP扩展：</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#在线配置安装">在线配置安装</a></li>
+  </ul>
+</nav>
+      </div>
+      
+    </div>
+    
+
+  </main>
+
+   
+
+  
+  <script src="/js/index.min.575dda8d49ee02639942c63564273e6da972ab531dda26a08800bdcb477cbd7f.js" integrity="sha256-V13ajUnuAmOZQsY1ZCc&#43;balyq1Md2iagiAC9y0d8vX8=" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js"></script>
+
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js"
+    data-autoloader-path="https://unpkg.com/prismjs@1.20.0/components/"></script>
+
+  
+    <script src="/js/table-of-contents.js"></script>
+  
+
+
+</body>
+
+</html>

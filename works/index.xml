@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Works on keon.im</title>
+    <link>https://junkaiman.github.io/works/</link>
+    <description>Recent content in Works on keon.im</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year} Keon</copyright>
+    <lastBuildDate>Fri, 26 Nov 2021 12:21:47 +0800</lastBuildDate><atom:link href="https://junkaiman.github.io/works/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dii Portal</title>
+      <link>https://junkaiman.github.io/works/dev/dii-portal/</link>
+      <pubDate>Fri, 26 Nov 2021 12:21:47 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/works/dev/dii-portal/</guid>
+      <description>The backstage management system of DKU innovation incubator (Dii) teams. Offers an convenient and efficient way of managing teams, projects, checking attendance, pushing notifications for both Dii applicants and administrators.
+Node.js + Express.js as backend system. MongoDB as the database. The front-end webpage is written in React.js. It is now in the development with a group of four students. The prototype and UI/UX design can be found at https://www.haitonglin.com/digital-imaging/web-design</description>
+    </item>
+    
+    <item>
+      <title>Circle of Life</title>
+      <link>https://junkaiman.github.io/works/art/circle-of-life/</link>
+      <pubDate>Mon, 18 Jan 2021 12:21:47 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/works/art/circle-of-life/</guid>
+      <description>This is a midterm project for MEDIART-206 Computer Graphics.
+Environment  openFrameworks v0.11.0  Project Proposal In the midterm project, I plan to design an interactive game that triggers the player to take in-depth thinking around the philosophy of making mistakes.
+Inspired by the film Triangle, I plan to use a mechanism that will be different from most 2d adventure games. After the player dies, instead of clearing everything and restart the level, in this game, the player will respawn with their previous bodies that replay their previous operations.</description>
+    </item>
+    
+    <item>
+      <title>🔢 Data Science Project</title>
+      <link>https://junkaiman.github.io/works/dev/data-science-related/</link>
+      <pubDate>Mon, 18 Jan 2021 12:21:47 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/works/dev/data-science-related/</guid>
+      <description>Data Mining Internship |  at China Unicom  Summer 2021
+ User behavior modeling via the Data Science approaches and Deep Neural Networks Assist in deploying a content recommendation system to millions of mobile ends Assist adjusting and optimizing the distributed batch processing and stream processing using Hadoop and Flink frameworks  &amp;hellip;Details
+AiAging.net |  Biological Age Calculator  March 2021 - August 2021
+Demo page for the biological age prediction project led by Prof.</description>
+    </item>
+    
+    <item>
+      <title>🧱 Full Stack Web Projects</title>
+      <link>https://junkaiman.github.io/works/dev/full-stack-web-related/</link>
+      <pubDate>Mon, 18 Jan 2021 12:21:47 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/works/dev/full-stack-web-related/</guid>
+      <description>theWall |  Open MsgBoard Feb - March 2021 
+thewall is an online message board for DKU members to anonymously publish their messages &amp;amp; appeals. Everyone visiting the site has the equal permission to delete any message on the board. And deleted messages will be kept in the trash bin for 24 hours.
+Node.js serving as backend system, and Vue.js as front-end system. Live message notification service is available (powered by Bark) running on the server end.</description>
+    </item>
+    
+    <item>
+      <title>AiAging.net</title>
+      <link>https://junkaiman.github.io/works/dev/aiaging/</link>
+      <pubDate>Sun, 17 Jan 2021 22:17:33 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/works/dev/aiaging/</guid>
+      <description>Demo page for the biological age prediction project led by Prof. Chenkai Wu and his team at Duke Kunshan University. The page receives user&amp;rsquo;s inputs of physiological data and returns with a predicted biological age.
+The project is held under Global Health Research Center and funded by local government.
+I took the responsibility of server deployment, frontend page design, and the backend system development to connect pre-trained PyCaret model with user&amp;rsquo;s input.</description>
+    </item>
+    
+    <item>
+      <title>Gallinula</title>
+      <link>https://junkaiman.github.io/works/dev/gallinula/</link>
+      <pubDate>Sun, 17 Jan 2021 22:17:33 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/works/dev/gallinula/</guid>
+      <description>🦆Gallinula is a Campus-Services-All-in-One Platform. The name comes from Gallinula Chloropus, which is a specie of duck that is frequently seen on campus. It is also widely (but not officially) acknowledged as the mascot of Duke Kunshan University.
+The following services are offered by Gallinula and currently bringing conveniences to hundreds of our DKU members including students and faculties!
+When&amp;rsquo;s the next shuttle? A Siri shortcut that enables you to check the next shuttle time within seconds by simply saying &amp;ldquo;Hey Siri, next shuttle&amp;rdquo;.</description>
+    </item>
+    
+    <item>
+      <title>Gaze</title>
+      <link>https://junkaiman.github.io/works/art/gaze/</link>
+      <pubDate>Sun, 17 Jan 2021 22:17:33 +0800</pubDate>
+      
+      <guid>https://junkaiman.github.io/works/art/gaze/</guid>
+      <description>This is a final project for MEDIART-206 Computer Graphics.
+Environment  openFrameworks v0.11.0 FaceOSC v1.2  Notice For this project, you will need FaceOSC installed first: Get the latest version of FaceOSC from here.
+Please compile &amp;amp; run the gaze application first, and then run the FaceOSC.
+Project Proposal ​ In the final project, I plan to design a device that applies face tracking technology into art exhibition.
+​ It’s a common scene that audiences at art gallery will usually gaze at artwork for a long time to observe the details and feel the in-depth meanings behind the works.</description>
+    </item>
+    
+  </channel>
+</rss>
